@@ -386,7 +386,6 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     grid-column-gap: 28px;
-    grid-row-gap: 20px;
 }
 
 .section-list-item {

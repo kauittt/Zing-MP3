@@ -377,42 +377,41 @@ a {
 }
 
 .section__heading {
-    margin-bottom: 20px;
     font-size: 2rem;
     font-weight: 700;
 }
 
 .section-list {
+    /* display: flex;
+    column-gap: 28px;
+    overflow: auto; */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     grid-column-gap: 28px;
-    grid-row-gap: 20px;
 }
 
 .section-list-item {
+    /* flex: 1 0 calc((100% / 5)); */
 }
 
 .section-list-item__img {
     width: 100%;
+    /* height: 100%; */
 }
 
 .section-list-item__heading {
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-top: 12px;
-    margin-bottom: 5px;
+    margin-top: 8px;
+    margin-bottom: 4px;
     font-size: 14px;
     font-weight: 700;
     color: var(--primary-text);
 }
 
 .section-list-item__desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
     font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.33;
