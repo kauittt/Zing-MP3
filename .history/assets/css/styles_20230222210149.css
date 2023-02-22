@@ -251,17 +251,6 @@ a {
     display: flex;
 }
 
-.header-menu::before {
-    content: "";
-    display: block;
-    position: absolute;
-    right: -4px;
-    bottom: -10px;
-    width: 65px;
-    height: 24px;
-    background-color: transparent;
-}
-
 .header-menu-account {
     padding: 12px 13px;
     border-radius: 50%;
@@ -287,10 +276,9 @@ a {
     color: var(--secondary-text);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
         rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    transition: all 0.3s ease;
 }
 
-.header-menu:hover .header-menu-more {
+.header-menu-more:hover {
     visibility: visible;
     opacity: 1;
 }

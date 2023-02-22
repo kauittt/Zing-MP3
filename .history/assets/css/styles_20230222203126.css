@@ -40,7 +40,6 @@ a {
 
 /*! Nav */
 .nav {
-    z-index: 3;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -206,23 +205,22 @@ a {
 .header {
     position: fixed;
     z-index: 2;
-    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: calc(100% - 240px);
+    /* width: calc() */
+    width: 100%;
     height: 70px;
-    padding: 0 60px;
+    /* margin-left: 60px; */
     background: var(--bgr);
-}
-.header.stick {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
 }
 
 .header-search {
     position: relative;
     max-width: 440px;
     width: 440px;
+    margin-left: 60px;
     color: var(--secondary-text);
 }
 
@@ -247,79 +245,17 @@ a {
 }
 
 .header-menu {
-    position: relative;
     display: flex;
 }
 
-.header-menu::before {
-    content: "";
-    display: block;
-    position: absolute;
-    right: -4px;
-    bottom: -10px;
-    width: 65px;
-    height: 24px;
-    background-color: transparent;
-}
-
-.header-menu-account {
+.header-menu__account {
     padding: 12px 13px;
     border-radius: 50%;
     background: #ced5e3;
-    cursor: pointer;
 }
 
-.header-menu-account i {
+.header-menu__account i {
     color: white;
-}
-
-.header-menu-more {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 50px;
-    width: 240px;
-    padding: 10px;
-    font-size: 1.4rem;
-    border-radius: 8px;
-    background-color: var(--nav-bgr);
-    color: var(--secondary-text);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    transition: all 0.3s ease;
-}
-
-.header-menu:hover .header-menu-more {
-    visibility: visible;
-    opacity: 1;
-}
-
-.header-menu-more::before {
-    content: "";
-    display: block;
-    position: absolute;
-    right: 8px;
-    top: -22px;
-    border-width: 12px;
-    border-style: solid;
-    border-color: transparent transparent var(--nav-bgr) transparent;
-}
-
-.header-menu-more i {
-    margin-right: 15px;
-    font-size: 2rem;
-}
-
-.header-menu-more-infor {
-}
-
-.header-menu-more-infor__item,
-.header-menu-more-logout {
-    padding: 12px 20px 12px 17px;
-}
-
-.header-menu-more-logout {
 }
 
 /*! Slider  */

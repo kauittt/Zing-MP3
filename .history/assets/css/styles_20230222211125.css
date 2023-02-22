@@ -255,11 +255,7 @@ a {
     content: "";
     display: block;
     position: absolute;
-    right: -4px;
-    bottom: -10px;
-    width: 65px;
-    height: 24px;
-    background-color: transparent;
+    background-color: red;
 }
 
 .header-menu-account {

@@ -255,11 +255,11 @@ a {
     content: "";
     display: block;
     position: absolute;
-    right: -4px;
-    bottom: -10px;
-    width: 65px;
-    height: 24px;
-    background-color: transparent;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
 }
 
 .header-menu-account {
