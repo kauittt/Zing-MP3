@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    /* font-family: "Poppins", sans-serif; */
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+:root {
+    --bgr: #f1ddd8;
+    --header-bgr: rgb(241, 221, 216, 0.8);
+    --nav-bgr: #f9e6e2;
+    --text-secondary: #696969;
+    --purple-primary: #d14781;
+    --hover-color: #cc3373;
+}

@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    /* font-family: "Poppins", sans-serif; */
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+/*! Comman */
+:root {
+    --bgr: #f9dbdb;
+    --header-bgr: rgb(241, 221, 216, 0.8);
+    --nav-bgr: #fbe6e6;
+    --primary-text: #32323d;
+    --secondary-text: #696969;
+    --search-text: #282828;
+    --purple-primary: #d14781;
+    --hover-color: #cc3373;
+}
+
+.main {
+}
+
+/*! Nav */
+.nav {
+    background: var(--nav-bgr);
+}
+
+/*! Content */
+.content {
+    background: var(--bgr);
+}
+
+/*! Play List */
+.playList {
+    background: var(--bgr);
+}
