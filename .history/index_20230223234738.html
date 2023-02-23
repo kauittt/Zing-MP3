@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Zing MP3</title>
+
+        <!--! favicon -->
+        <link rel="icon" type="image/x-icon" href="./assets/img/fav.png" />
+
+        <!--! font-awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+        <!--! CSS -->
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css" />
+    </head>
+    <body>
+        <div class="main">
+            <nav class="nav">
+                <div class="nav-logo">
+                    <img
+                        src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-light.svg"
+                        alt="Zing Mp3"
+                    />
+                </div>
+                <div class="nav-category">
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-headphones nav-category__item__icon"
+                        ></i
+                        >Cá Nhân
+                    </a>
+                    <a
+                        href="#!"
+                        class="nav-category__item nav-category__item--selected"
+                    >
+                        <i
+                            class="fa-solid fa-compact-disc nav-category__item__icon"
+                        ></i
+                        >Khám Phá
+                    </a>
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-chart-simple nav-category__item__icon"
+                        ></i
+                        >#zingchart
+                    </a>
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-radio nav-category__item__icon"
+                        ></i
+                        >Radio
+                        <img
+                            src="https://zjs.zmdcdn.me/zmp3-desktop/dev/147506/static/media/live-tag.e25dd240.svg"
+                            alt="Live"
+                        />
+                    </a>
+
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-regular fa-calendar-days nav-category__item__icon"
+                        ></i
+                        >Theo Dõi
+                    </a>
+                </div>
+
+                <div class="nav-music">
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-music nav-category__item__icon"
+                        ></i
+                        >Nhạc Mới
+                    </a>
+
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-icons nav-category__item__icon"
+                        ></i
+                        >Thể Loại
+                    </a>
+
+                    <a href="#!" class="nav-category__item">
+                        <i class="fa-solid fa-star nav-category__item__icon"></i
+                        >Top 100
+                    </a>
+
+                    <a href="#!" class="nav-category__item">
+                        <i
+                            class="fa-solid fa-film nav-category__item__icon"
+                        ></i>
+                        MV
+                    </a>
+                </div>
+
+                <div class="nav-vip">
+                    <p class="nav-vip__desc">
+                        Nghe nhạc không quảng cáo cùng kho nhạc VIP
+                    </p>
+                    <div class="nav-vip__btn">NÂNG CẤP VIP</div>
+                </div>
+
+                <div class="nav-library">
+                    <h2 class="nav-library__heading">THƯ VIỆN</h2>
+                    <div class="nav-library-list">
+                        <p class="nav-library-list__item">
+                            <i class="fa-solid fa-music"></i>Bài hát
+                        </p>
+                        <p class="nav-library-list__item">
+                            <i class="fa-solid fa-clipboard-list"></i> Playlist
+                        </p>
+                        <p class="nav-library-list__item">
+                            <i class="fa-solid fa-clock"></i>Gần đây
+                        </p>
+                    </div>
+                </div>
+
+                <div class="nav-new">
+                    <p class="nav-new__item">
+                        <i class="fa-solid fa-plus"></i>Tạo playlist mới
+                    </p>
+                </div>
+            </nav>
+            <!--! Header -->
+            <div class="header">
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                        type="text"
+                        class="header-search__input"
+                        placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát, ..."
+                    />
+                </div>
+
+                <div class="header-menu">
+                    <div class="header-menu-account">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="header-menu-more">
+                        <div class="header-menu-more-infor">
+                            <p class="header-menu-more-infor__item">
+                                <i class="fa-solid fa-circle-info"></i>Thông tin
+                            </p>
+                            <p class="header-menu-more-infor__item">
+                                <i class="fa-solid fa-circle-up"></i>Nâng cấp
+                                VIP
+                            </p>
+                        </div>
+                        <div class="header-menu-more-logout">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i
+                            >Đăng xuất
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <!--! Slider  -->
+                <div class="slider">
+                    <i
+                        class="fa-solid fa-circle-chevron-left slider__icon slider__prev"
+                    ></i>
+                    <div class="slider-list">
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+
+                        <div class="slider-list-item">
+                            <img
+                                src="https://photo-zmp3.zmdcdn.me/banner/a/7/8/3/a7835d3a266097b15a166670db550b95.jpg"
+                                alt=""
+                                class="slider-list-item__img"
+                            />
+                        </div>
+                    </div>
+                    <i
+                        class="fa-solid fa-circle-chevron-right slider__icon slider__next"
+                    ></i>
+                </div>
+
+                <div class="section hit">
+                    <h2 class="section__heading">Bật Tình Yêu Lên</h2>
+                    <div class="section-list">
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section singer">
+                    <h2 class="section__heading">Bật Tình Yêu Lên</h2>
+                    <div class="section-list">
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section newSong">
+                    <h2 class="section__heading">Bật Tình Yêu Lên</h2>
+                    <div class="section-list">
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section top100">
+                    <h2 class="section__heading">Bật Tình Yêu Lên</h2>
+                    <div class="section-list">
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section album">
+                    <h2 class="section__heading">Bật Tình Yêu Lên</h2>
+                    <div class="section-list">
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+
+                        <div class="section-list-item">
+                            <div class="section-list-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/4/e/9/1/4e911e3dab586d4795198e506c4627d8.jpg"
+                                    alt=""
+                                />
+                                <div class="section-list-item-img__layer"></div>
+                            </div>
+                            <h3 class="section-list-item__heading">
+                                Nhạc cho thứ tư
+                            </h3>
+                            <p class="section-list-item__desc">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Facere.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="play">
+                <div class="play-infor">
+                    <div class="play-infor-img">
+                        <img
+                            src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
+                            alt=""
+                        />
+                    </div>
+                    <div class="play-infor-song">
+                        <h3 class="play-infor-song__name">
+                            Lorem, ipsum dolor.
+                        </h3>
+                        <p class="play-infor-song__singer">
+                            Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="play-main">
+                    <div class="play-main-list">
+                        <i class="fa-solid fa-shuffle randome"></i>
+                        <i class="fa-solid fa-backward-step prev"></i>
+                        <i
+                            class="fa-regular fa-circle-play play-main-list--main"
+                        ></i>
+                        <!-- <i class="fa-regular fa-circle-pause "></i> -->
+                        <i class="fa-solid fa-forward-step next"></i>
+                        <i class="fa-solid fa-repeat"></i>
+                    </div>
+                    <div class="play-main-time">
+                        <p class="play-main-time__current">0:00</p>
+                        <input
+                            type="range"
+                            class="play-main-time__drag"
+                            min="0"
+                            max="100"
+                        />
+                        <div class="play-main-time__total">3:21</div>
+                    </div>
+                </div>
+
+                <div class="play-menu">
+                    <div class="play-menu-volume">
+                        <i class="fa-solid fa-volume-high"></i>
+                        <input
+                            type="range"
+                            name=""
+                            id=""
+                            class="play-menu-volume__input"
+                        />
+                    </div>
+
+                    <i class="fa-solid fa-list-ul"></i>
+                </div>
+                <div class="playList">
+                    <h2 class="playList__heading">Danh sách phát</h2>
+                    <div class="playList-wrapper">
+                        <div class="playList-wrapper-item selected">
+                            <div class="playList-wrapper-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="playList-wrapper-item-song">
+                                <p class="playList-wrapper-item-song__name">
+                                    Lorem, ipsum dolor.
+                                </p>
+                                <p class="playList-wrapper-item-song__singer">
+                                    Lorem, ipsum dolor.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="playList-wrapper-item">
+                            <div class="playList-wrapper-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="playList-wrapper-item-song">
+                                <p class="playList-wrapper-item-song__name">
+                                    Lorem, ipsum dolor.
+                                </p>
+                                <p class="playList-wrapper-item-song__singer">
+                                    Lorem, ipsum dolor.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="playList-wrapper-item">
+                            <div class="playList-wrapper-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="playList-wrapper-item-song">
+                                <p class="playList-wrapper-item-song__name">
+                                    Lorem, ipsum dolor.
+                                </p>
+                                <p class="playList-wrapper-item-song__singer">
+                                    Lorem, ipsum dolor.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="playList-wrapper-item">
+                            <div class="playList-wrapper-item-img">
+                                <img
+                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="playList-wrapper-item-song">
+                                <p class="playList-wrapper-item-song__name">
+                                    Lorem, ipsum dolor.
+                                </p>
+                                <p class="playList-wrapper-item-song__singer">
+                                    Lorem, ipsum dolor.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./assets/js/main.js"></script>
+    </body>
+</html>
