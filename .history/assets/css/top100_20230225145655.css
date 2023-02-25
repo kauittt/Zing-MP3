@@ -1,0 +1,24 @@
+.top100 {
+    margin-top: 102px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+
+.content {
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.banner {
+    background: red;
+}
+
+.banner-img {
+}
+
+.banner-alpha {
+}
+
+.banner-blur {
+}

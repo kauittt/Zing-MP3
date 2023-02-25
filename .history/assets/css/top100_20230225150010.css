@@ -1,0 +1,30 @@
+.content {
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.header {
+    display: none;
+}
+
+.top100 {
+    margin-top: 102px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+
+.banner {
+    height: 280px;
+    margin: -70px -60px 0;
+}
+
+.banner-img {
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png);
+}
+
+.banner-alpha {
+}
+
+.banner-blur {
+}

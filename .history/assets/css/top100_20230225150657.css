@@ -1,0 +1,45 @@
+.content {
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.header {
+    display: none;
+}
+
+.top100 {
+    margin-top: 102px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+
+.banner {
+    position: relative;
+    height: 280px;
+    margin: -70px -60px 0;
+}
+
+.banner-img {
+    height: 260px;
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png)
+        top/cover no-repeat;
+}
+
+.banner-alpha {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 100%, 0) 37%,
+        var(--bgr)
+    );
+}
+
+.banner-blur {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(180deg, var(--bgr), transparent);
+}
