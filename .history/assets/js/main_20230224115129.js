@@ -30,9 +30,8 @@ function loadItem(item, data) {
 
     desc.textContent = "";
     data.artists.forEach((item) => {
-        desc.textContent += `${item.name}, `;
+        desc.textContent += `${item}, `;
     });
-    desc.textContent = desc.textContent.slice(0, -2);
 }
 
 getListSong("top100");

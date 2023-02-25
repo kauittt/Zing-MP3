@@ -16,6 +16,7 @@ async function getListSong(param) {
     console.log(list);
 
     for (let i = 0; i < topItems.length; i++) {
+        console.log("loaded");
         loadItem(topItems[i], list[i]);
     }
 }

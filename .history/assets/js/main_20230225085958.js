@@ -35,4 +35,4 @@ function loadItem(item, data) {
     desc.textContent = desc.textContent.slice(0, -2);
 }
 
-getListSong("top100");
+await getListSong("top100");

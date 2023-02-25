@@ -9,6 +9,7 @@ drag.addEventListener("input", function (e) {
 
 const endpoint = `https://apizingmp3.vercel.app/api/`;
 async function getListSong(param) {
+    console.log(param);
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();
     const list = data[0].items;

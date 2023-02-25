@@ -32,7 +32,7 @@ function loadItem(item, data) {
     data.artists.forEach((item) => {
         desc.textContent += `${item.name}, `;
     });
-    desc.textContent = desc.textContent.slice(0, -2);
+    console.log(desc.textContent.slice(0, -2));
 }
 
 getListSong("top100");

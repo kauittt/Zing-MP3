@@ -26,13 +26,6 @@ function loadItem(item, data) {
     const desc = item.querySelector(".section-list-item__desc");
 
     img.src = data.thumbnail;
-    heading.textContent = data.title;
-
-    desc.textContent = "";
-    data.artists.forEach((item) => {
-        desc.textContent += `${item.name}, `;
-    });
-    desc.textContent = desc.textContent.slice(0, -2);
 }
 
 getListSong("top100");

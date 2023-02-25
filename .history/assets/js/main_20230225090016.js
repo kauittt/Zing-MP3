@@ -22,6 +22,7 @@ async function getListSong(param) {
 
 function loadItem(item, data) {
     const img = item.querySelector("img");
+    console.log("🚀 ~ file: main.js:25 ~ loadItem ~ img:", img);
     const heading = item.querySelector(".section-list-item__heading");
     const desc = item.querySelector(".section-list-item__desc");
 

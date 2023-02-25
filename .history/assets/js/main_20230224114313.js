@@ -15,24 +15,9 @@ async function getListSong(param) {
 
     console.log(list);
 
-    for (let i = 0; i < topItems.length; i++) {
-        loadItem(topItems[i], list[i]);
-    }
+    for (let i = 0; i < topItems.length; i++) {}
 }
 
-function loadItem(item, data) {
-    const img = item.querySelector("img");
-    const heading = item.querySelector(".section-list-item__heading");
-    const desc = item.querySelector(".section-list-item__desc");
-
-    img.src = data.thumbnail;
-    heading.textContent = data.title;
-
-    desc.textContent = "";
-    data.artists.forEach((item) => {
-        desc.textContent += `${item.name}, `;
-    });
-    desc.textContent = desc.textContent.slice(0, -2);
-}
+function loadItem(data) {}
 
 getListSong("top100");
