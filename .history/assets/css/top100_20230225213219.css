@@ -1,0 +1,183 @@
+/*! Comman */
+:root {
+    --bgr: #f9dbdb;
+    --nav-bgr: #fbe6e6;
+    --play-color: #f9c6c5;
+    --primary-text: #32323d;
+    --secondary-text: #696969;
+    --selected-color: #d4baba;
+    --hover-color: #ecd0d0;
+    --purple-primary: #d14781;
+    --hover-color: #cc3373;
+    --alpha-bg: rgba(0, 0, 0, 0.05);
+    --dark-bg: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+    padding-bottom: 30px;
+    min-height: 100vh;
+    display: none;
+}
+
+.header {
+    /* display: none; */
+}
+
+.top100 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+
+.banner {
+    position: relative;
+    height: 280px;
+    margin: -70px -60px 0;
+}
+
+.banner-img {
+    height: 260px;
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png)
+        top/cover no-repeat;
+}
+
+.banner-alpha {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.banner-blur2 {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(180deg, transparent, var(--bgr));
+}
+
+.banner-blur {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 100%, 0) 37%,
+        var(--bgr)
+    );
+}
+
+.banner svg {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.listSong {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 240px;
+    padding: 20px 60px;
+    background: var(--bgr);
+    overflow: hidden;
+    margin-top: 70px;
+    /* display: none; */
+}
+
+.listSong-infor {
+    position: fixed;
+    width: 300px;
+    text-align: center;
+    color: var(--secondary-text);
+    font-size: 1.2rem;
+    line-height: 1.75;
+}
+
+.listSong-infor-img {
+    width: 100%;
+}
+
+.listSong-infor-img img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.listSong-infor__heading {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--primary-text);
+}
+
+.listSong-infor__date {
+}
+
+.listSong-infor__singers {
+}
+
+.listSong-infor__liked {
+}
+
+.listSong-infor__btn {
+    display: inline-block
+    padding: 9px 24px;
+    font-size: 1.4rem;
+    font-weight: 400;
+    background: var(--purple-primary);
+    border-radius: 999px;
+}
+
+.listSong-infor__btn i {
+}
+
+.listSong-content {
+    margin-left: 310px;
+    /* flex-grow: 1; */
+}
+
+.listSong-content__desc {
+}
+
+.listSong-content-list {
+}
+
+.listSong-content-list-heading {
+}
+
+.listSong-content-list-heading__title {
+}
+
+.listSong-content-list-item {
+}
+
+.listSong-content-list-item-infor {
+}
+
+.listSong-content-list-item-infor i {
+}
+
+.listSong-content-list-item-infor-img {
+}
+
+.listSong-content-list-item-infor-img img {
+}
+
+.listSong-content-list-item-infor-song {
+}
+
+.listSong-content-list-item-infor-song__name {
+}
+
+.listSong-content-list-item-infor-song__singer {
+}
+
+.listSong-content-list-item__album {
+}
+
+.listSong-content-list-item__time {
+}
