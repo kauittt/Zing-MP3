@@ -18,7 +18,7 @@ const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
 
-//? Content - Slider
+//? Contet - Slider
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
 

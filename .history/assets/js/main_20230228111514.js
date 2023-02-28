@@ -17,34 +17,48 @@ const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
-function handleBtnClick(direction) {
+function handleNextBtnClick() {
     if (!sliderList.querySelector(".slider-list-item")) return;
+    if (sliderList.scrollLeft <= 0 && direction == -1) {
+        console.log("return left");
+        return;
+    }
 
     const sliderScrollWidth =
         Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
+    if (sliderList.scrollLeft >= sliderScrollWidth && direction == 1) {
+        console.log("return right");
+        return;
+    }
+
+    console.log(sliderList.scrollLeft);
 
     sliderList.scrollLeft +=
         direction *
         (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
 
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
+    setTimeout(console.log(sliderList.scrollLeft), 200);
+
+    handleIcon(sliderScrollWidth, sliderList.scrollLeft);
 }
 
 function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
+    console.log(scrollLeft);
+    if (scrollLeft <= 0) {
+        prevBtn.classList.add("hide");
+        console.log("left hide");
+        return;
+    } else {
+        prevBtn.classList.remove("hide");
+    }
 
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
+    if (scrollLeft >= scrollWidth) {
+        console.log("right hide");
+        nextBtn.classList.add("hide");
+        return;
+    } else {
+        nextBtn.classList.remove("hide");
+    }
 }
 
 async function handleSliderClick(e) {
@@ -150,9 +164,7 @@ async function loadSections() {
     }
 }
 
-nextBtn.addEventListener("click", function (e) {
-    handleBtnClick(1);
-});
+nextBtn.addEventListener("click", handleNextBtnClick);
 prevBtn.addEventListener("click", function (e) {
     handleBtnClick(-1);
 });

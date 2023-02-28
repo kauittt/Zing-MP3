@@ -17,14 +17,13 @@ const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
 
     const sliderScrollWidth =
         Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
 
+    console.log("work");
     sliderList.scrollLeft +=
         direction *
         (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
@@ -150,6 +149,9 @@ async function loadSections() {
     }
 }
 
+// nextBtn.addEventListener("click", function (e) {
+//     handleNextBtnClick(1);
+// });
 nextBtn.addEventListener("click", function (e) {
     handleBtnClick(1);
 });

@@ -621,7 +621,6 @@ a {
     display: flex;
     column-gap: 20px;
     width: 100%;
-    padding-top: 5px;
     overflow: auto;
     scroll-behavior: smooth;
 }
@@ -630,11 +629,6 @@ a {
     flex: 1 0 calc((100% / 3) - 14px);
     cursor: pointer;
     /* display: none; */
-    transition: all 0.2s ease;
-}
-
-.slider-list-item:hover {
-    transform: translateY(-5px);
 }
 
 ::-webkit-scrollbar {

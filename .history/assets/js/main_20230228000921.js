@@ -12,53 +12,10 @@ drag.addEventListener("input", function (e) {
 const content = document.querySelector(".content");
 const sections = document.querySelectorAll(".section");
 const sliderList = document.querySelector(".slider-list");
-
 const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
-function handleBtnClick(direction) {
-    if (!sliderList.querySelector(".slider-list-item")) return;
-
-    const sliderScrollWidth =
-        Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
-
-    sliderList.scrollLeft +=
-        direction *
-        (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
-
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
-}
-
-function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
-
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
-}
-
-async function handleSliderClick(e) {
-    const id = e.target.closest(".slider-list-item").dataset.id;
-
-    const response = await fetch(`${endpoint}infosong?id=${id}`);
-    const { data } = await response.json();
-
-    if (!data) {
-        handleItemClick(null, id);
-        return;
-    }
-    console.log("song");
-}
 
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
@@ -150,12 +107,22 @@ async function loadSections() {
     }
 }
 
-nextBtn.addEventListener("click", function (e) {
-    handleBtnClick(1);
-});
-prevBtn.addEventListener("click", function (e) {
-    handleBtnClick(-1);
-});
+async function handleSliderClick(e) {
+    let list = false;
+    const id = e.target.closest(".slider-list-item").dataset.id;
+    // console.log(id);
+
+    const response = await fetch(`${endpoint}infosong?id=${id}`);
+    if (!response) {
+        console.log("list");
+        response = await fetch(`${endpoint}detailplaylist?id=${id}`);
+        list = true;
+        handleItemClick(null, id);
+    }
+    const { data } = await response.json();
+    console.log(data);
+}
+
 sliderList.addEventListener("click", handleSliderClick);
 loadSections();
 

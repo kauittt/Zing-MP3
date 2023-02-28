@@ -12,39 +12,15 @@ drag.addEventListener("input", function (e) {
 const content = document.querySelector(".content");
 const sections = document.querySelectorAll(".section");
 const sliderList = document.querySelector(".slider-list");
-
 const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
 function handleBtnClick(direction) {
-    if (!sliderList.querySelector(".slider-list-item")) return;
-
-    const sliderScrollWidth =
-        Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
-
+    console.log("work");
     sliderList.scrollLeft +=
         direction *
         (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
-
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
-}
-
-function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
-
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
 }
 
 async function handleSliderClick(e) {
@@ -151,10 +127,10 @@ async function loadSections() {
 }
 
 nextBtn.addEventListener("click", function (e) {
-    handleBtnClick(1);
+    handleBtnClick(-1);
 });
 prevBtn.addEventListener("click", function (e) {
-    handleBtnClick(-1);
+    handleBtnClick(1);
 });
 sliderList.addEventListener("click", handleSliderClick);
 loadSections();

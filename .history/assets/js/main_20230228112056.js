@@ -17,34 +17,60 @@ const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
-function handleBtnClick(direction) {
+function handleNextBtnClick() {
     if (!sliderList.querySelector(".slider-list-item")) return;
 
     const sliderScrollWidth =
         Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
+    if (sliderList.scrollLeft >= sliderScrollWidth && direction == 1) {
+        console.log("return right");
+        return;
+    }
 
-    sliderList.scrollLeft +=
-        direction *
-        (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
+    console.log(sliderList.scrollLeft);
 
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
+    sliderList.scrollLeft += 200;
+
+    // sliderList.scrollLeft +=
+    //     sliderList.querySelector(".slider-list-item").offsetWidth + 20;
+
+    console.log(sliderList.scrollLeft);
 }
 
-function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
+// function handleNextBtnClick(direction) {
+//     if (!sliderList.querySelector(".slider-list-item")) return;
 
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
+//     const sliderScrollWidth =
+//         Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
+//     if (sliderList.scrollLeft >= sliderScrollWidth && direction == 1) {
+//         console.log("return right");
+//         return;
+//     }
+
+//     console.log(sliderList.scrollLeft);
+
+//     sliderList.scrollLeft += 200;
+
+//     console.log(sliderList.scrollLeft);
+// }
+
+function handleIcon(scrollWidth, scrollLeft) {
+    console.log(scrollLeft);
+    if (scrollLeft <= 0) {
+        prevBtn.classList.add("hide");
+        console.log("left hide");
+        return;
+    } else {
+        prevBtn.classList.remove("hide");
+    }
+
+    if (scrollLeft >= scrollWidth) {
+        console.log("right hide");
+        nextBtn.classList.add("hide");
+        return;
+    } else {
+        nextBtn.classList.remove("hide");
+    }
 }
 
 async function handleSliderClick(e) {
@@ -150,9 +176,10 @@ async function loadSections() {
     }
 }
 
-nextBtn.addEventListener("click", function (e) {
-    handleBtnClick(1);
-});
+// nextBtn.addEventListener("click", function (e) {
+//     handleNextBtnClick(1);
+// });
+prevBtn.addEventListener("click", handleNextBtnClick);
 prevBtn.addEventListener("click", function (e) {
     handleBtnClick(-1);
 });

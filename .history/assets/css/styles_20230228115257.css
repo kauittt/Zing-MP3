@@ -621,7 +621,6 @@ a {
     display: flex;
     column-gap: 20px;
     width: 100%;
-    padding-top: 5px;
     overflow: auto;
     scroll-behavior: smooth;
 }

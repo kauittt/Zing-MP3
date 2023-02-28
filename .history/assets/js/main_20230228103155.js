@@ -17,34 +17,33 @@ const nextBtn = document.querySelector(".slider__next");
 const prevBtn = document.querySelector(".slider__prev");
 
 let sectionsId = 0;
-
-//? Content - Slider
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
+    if (sliderList.scrollLeft <= 0 && direction == -1) return;
 
     const sliderScrollWidth =
         Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
+    if (sliderList.scrollLeft >= sliderScrollWidth && direction == 1) return;
 
     sliderList.scrollLeft +=
         direction *
         (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
 
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
+    handleIcon(sliderScrollWidth, sliderList.scrollLeft);
 }
 
 function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
+    if (sliderList.scrollLeft <= 0 && direction == -1) {
+        prevBtn.classList.add("hide");
+    } else {
+        prevBtn.classList.remove("hide");
+    }
 
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
+    if (sliderList.scrollLeft >= sliderScrollWidth && direction == 1) {
+        nextBtn.classList.add("hide");
+    } else {
+        nextBtn.classList.remove("hide");
+    }
 }
 
 async function handleSliderClick(e) {
