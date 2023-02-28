@@ -7,7 +7,7 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
-    // await loadSection("top100");
+    await loadSection("top100");
 }
 
 //! Nav
@@ -16,7 +16,7 @@ let navSelected = 1;
 
 for (let i = 0; i < [...navLinks].length; i++) {
     const item = navLinks[i];
-    item.addEventListener("click", async function (e) {
+    item.addEventListener("click", function (e) {
         navLinks[navSelected].classList.remove("nav-category__item--selected");
         item.classList.add("nav-category__item--selected");
         navSelected = item.dataset.nav;
@@ -34,9 +34,8 @@ for (let i = 0; i < [...navLinks].length; i++) {
                     item.style.display = "none";
                 });
 
+                !topContent.querySelector(".section") && loadSection("top100");
                 pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
 
                 break;
             default:

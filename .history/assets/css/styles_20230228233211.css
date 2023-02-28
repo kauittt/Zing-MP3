@@ -223,7 +223,7 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    display: none;
 }
 /*! Header  */
 .header {
@@ -588,14 +588,13 @@ a {
 
 /*! pageTop  */
 .pageTop {
-    min-height: 100vh;
-    display: none;
 }
 
 .pageTop-content {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    row-gap: 48px;
 }
 
 .banner {

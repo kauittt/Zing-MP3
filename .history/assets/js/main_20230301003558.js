@@ -34,9 +34,9 @@ for (let i = 0; i < [...navLinks].length; i++) {
                     item.style.display = "none";
                 });
 
-                pages[2].style.display = "block";
                 !topContent.querySelector(".section-list-item") &&
                     (await loadSection("top100"));
+                pages[2].style.display = "block";
 
                 break;
             default:

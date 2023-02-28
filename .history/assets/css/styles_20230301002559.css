@@ -588,7 +588,6 @@ a {
 
 /*! pageTop  */
 .pageTop {
-    min-height: 100vh;
     display: none;
 }
 
@@ -596,6 +595,7 @@ a {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    row-gap: 48px;
 }
 
 .banner {

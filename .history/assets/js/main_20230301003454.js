@@ -34,9 +34,11 @@ for (let i = 0; i < [...navLinks].length; i++) {
                     item.style.display = "none";
                 });
 
+                if (!topContent.querySelector(".section")) {
+                    console.log("load");
+                    await loadSection("top100");
+                }
                 pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
 
                 break;
             default:

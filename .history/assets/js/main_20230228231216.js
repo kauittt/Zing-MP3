@@ -1,58 +1,15 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
 
-const pages = document.querySelectorAll("div[data-page]");
-console.log(pages);
-
-loadAll();
-
-async function loadAll() {
-    await loadSections();
-    // await loadSection("top100");
-}
-
-//! Nav
 const navLinks = document.querySelectorAll(".nav h2[data-nav]");
-let navSelected = 1;
-
-for (let i = 0; i < [...navLinks].length; i++) {
-    const item = navLinks[i];
-    item.addEventListener("click", async function (e) {
-        navLinks[navSelected].classList.remove("nav-category__item--selected");
-        item.classList.add("nav-category__item--selected");
-        navSelected = item.dataset.nav;
-
-        switch (navSelected) {
-            case "1":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[0].style.display = "block";
-                break;
-            case "7":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
-
-                break;
-            default:
-        }
-    });
-}
+const pages = document.querySelectorAll("div[data-page]");
 
 //! Content
 const content = document.querySelector(".content");
 
 //? Section
-let sectionsId = 0;
 const sections = document.querySelectorAll(".section");
-[...sections].forEach((item) => {
-    item.addEventListener("click", handleItemClick);
-});
+let sectionsId = 0;
+loadSections();
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
@@ -196,51 +153,27 @@ const listSong = document.querySelector(".listSong");
 const listSong_content = document.querySelector(".listSong-content");
 const listSong_infor = document.querySelector(".listSong-infor");
 
+[...sections].forEach((item) => {
+    item.addEventListener("click", handleItemClick);
+});
+
 async function handleItemClick(e, id = null) {
     if (!id) {
-        id =
-            e.target.closest(".section-list-item") &&
-            e.target.closest(".section-list-item").dataset.id;
+        id = e.target.closest(".section-list-item").dataset.id;
     }
 
     const response = await fetch(`${endpoint}detailplaylist?id=${id}`);
     const { data } = await response.json();
 
-    [...pages].forEach((item) => {
-        item.style.display = "none";
-    });
-    pages[1].style.display = "flex";
-
-    listSong_infor.innerHTML = "";
-    listSong_content.innerHTML = "";
+    content.style.display = "none";
+    listSong.style.display = "flex";
 
     listSong_infor.insertAdjacentHTML("beforeend", loadListInfor(data));
-
     loadSingers(
         data.artists,
         document.querySelector(".listSong-infor__singers")
     );
-    // console.log(data);
 
-    listSong_content.insertAdjacentHTML(
-        "beforeend",
-        `<p class="listSong-content__desc">${data.sortDescription}
-</p>
-<div class="listSong-content-list">
-                        <div class="listSong-content-list-heading">
-                            <p class="listSong-content-list-heading__title">
-                                <i class="fa-solid fa-list"></i>
-                                BÀI HÁT
-                            </p>
-                            <p class="listSong-content-list-heading__title">
-                                ALBUM
-                            </p>
-                            <p class="listSong-content-list-heading__title">
-                                THỜI GIAN
-                            </p>
-                        </div>
-                    </div>`
-    );
     data.song.items.forEach((item) => {
         listSong_content
             .querySelector(".listSong-content-list")
@@ -339,68 +272,6 @@ function loadListContent(data) {
             item.querySelector(".listSong-content-list-item-infor-song__singer")
         );
     return item;
-}
-
-//! pageTop
-const topContent = document.querySelector(".pageTop-content");
-
-async function loadSection(param) {
-    const sections = topContent.querySelectorAll(".section");
-    const response = await fetch(`${endpoint}${param}`);
-    const { data } = await response.json();
-
-    for (let i = 0; i < [...sections].length; i++) {
-        getListSong(data[i], sections[i]);
-    }
-}
-
-function getListSong(item, section) {
-    const heading = document.createElement("h2");
-    heading.className = "section__heading";
-    heading.textContent = item.title;
-    section.appendChild(heading);
-
-    const list = document.createElement("div");
-    list.className = "section-list";
-
-    item.items.forEach((item) => {
-        //! listItem
-        list.insertAdjacentHTML("beforeend", loadItem(item));
-    });
-    section.appendChild(list);
-    topContent.append(section);
-}
-
-function loadItem(item) {
-    let singers = "";
-    item.artists.forEach((item) => {
-        singers += item.name + ", ";
-    });
-    singers = singers.slice(0, -2);
-    const template = `
-            <div class="section-list-item" data-id="${item.encodeId}">
-                <div class="section-list-item-img" ">
-                    <img
-                        src="${item.thumbnailM}"
-                        alt=""
-                    />
-                    <div
-                        class="layer"
-                    >
-                        <i
-                            class="fa-regular fa-circle-play"
-                        ></i>
-                    </div>
-                </div>
-                <h3 class="section-list-item__heading ">
-                    ${item.title}
-                </h3>
-                <p class="section-list-item__desc">
-                    ${singers}}
-                </p>
-            </div>
-`;
-    return template;
 }
 
 //! Drag

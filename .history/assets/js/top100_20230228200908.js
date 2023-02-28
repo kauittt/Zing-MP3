@@ -1,5 +1,5 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
-const top100 = document.querySelector(".top100");
+const top100 = document.querySelector(".pageTop100-content");
 
 loadSection("top100");
 

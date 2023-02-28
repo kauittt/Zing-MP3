@@ -7,37 +7,40 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
-    // await loadSection("top100");
+    await loadSection("top100");
 }
 
 //! Nav
 const navLinks = document.querySelectorAll(".nav h2[data-nav]");
 let navSelected = 1;
+console.log([...navLinks].length);
 
 for (let i = 0; i < [...navLinks].length; i++) {
     const item = navLinks[i];
-    item.addEventListener("click", async function (e) {
+    item.addEventListener("click", function (e) {
+        console.log(item);
         navLinks[navSelected].classList.remove("nav-category__item--selected");
         item.classList.add("nav-category__item--selected");
         navSelected = item.dataset.nav;
 
+        // [...pages].forEach((item) => {
+        //     item.style.display = "none";
+        // });
+
         switch (navSelected) {
-            case "1":
+            case 1:
+                console.log("case 2");
                 [...pages].forEach((item) => {
                     item.style.display = "none";
                 });
-
                 pages[0].style.display = "block";
                 break;
-            case "7":
+            case 7:
+                console.log("case 7");
                 [...pages].forEach((item) => {
                     item.style.display = "none";
                 });
-
                 pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
-
                 break;
             default:
         }
@@ -209,13 +212,10 @@ async function handleItemClick(e, id = null) {
     [...pages].forEach((item) => {
         item.style.display = "none";
     });
-    pages[1].style.display = "flex";
 
-    listSong_infor.innerHTML = "";
-    listSong_content.innerHTML = "";
+    pages[listSong.getAttribute("data-page")].style.display = "flex";
 
     listSong_infor.insertAdjacentHTML("beforeend", loadListInfor(data));
-
     loadSingers(
         data.artists,
         document.querySelector(".listSong-infor__singers")

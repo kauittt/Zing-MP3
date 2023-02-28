@@ -42,16 +42,6 @@ a {
     width: calc(100%-120px);
 }
 
-.content,
-.pageTop {
-    width: 100%;
-    min-height: 100vh;
-    margin-left: 240px;
-    padding: 0 60px 20px;
-    background: var(--bgr);
-    overflow: hidden;
-}
-
 /*! Nav */
 .nav {
     z-index: 3;
@@ -88,7 +78,6 @@ a {
     white-space: nowrap;
     line-height: normal;
     transition: all 0.1s ease;
-    cursor: pointer;
 }
 
 .nav-category__item:hover,
@@ -223,7 +212,13 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 240px;
+    padding: 0 60px 20px;
+    background: var(--bgr);
+    overflow: hidden;
+    display: none;
 }
 /*! Header  */
 .header {
@@ -584,64 +579,6 @@ a {
 .listSong-content-list-item__time {
     flex-grow: 1;
     text-align: center;
-}
-
-/*! pageTop  */
-.pageTop {
-    min-height: 100vh;
-    display: none;
-}
-
-.pageTop-content {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.banner {
-    position: relative;
-    height: 280px;
-    margin: -70px -60px 0;
-}
-
-.banner-img {
-    height: 260px;
-    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png)
-        top/cover no-repeat;
-}
-
-.banner-alpha {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png);
-    -webkit-filter: grayscale(1);
-    filter: grayscale(1);
-}
-
-.banner-blur2 {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    background-image: linear-gradient(180deg, transparent, var(--bgr));
-}
-
-.banner-blur {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    background-image: linear-gradient(
-        180deg,
-        hsla(0, 0%, 100%, 0) 37%,
-        var(--bgr)
-    );
-}
-
-.banner svg {
-    position: absolute;
-    top: 90px;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 /*! Slider  */
@@ -1072,4 +1009,58 @@ a {
 
 .playList-wrapper-item.selected .playList-wrapper-item-song__singer {
     color: hsla(0, 0%, 100%, 0.6);
+}
+
+/*! pageTop100  */
+.pageTop100-content {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+
+.banner {
+    position: relative;
+    height: 280px;
+    margin: -70px -60px 0;
+}
+
+.banner-img {
+    height: 260px;
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png)
+        top/cover no-repeat;
+}
+
+.banner-alpha {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background: url(https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.8.38/static/media/banner-100.33cafe6b.png);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.banner-blur2 {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(180deg, transparent, var(--bgr));
+}
+
+.banner-blur {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 100%, 0) 37%,
+        var(--bgr)
+    );
+}
+
+.banner svg {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -1,61 +1,77 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
 
-const pages = document.querySelectorAll("div[data-page]");
-console.log(pages);
-
-loadAll();
-
-async function loadAll() {
-    await loadSections();
-    // await loadSection("top100");
-}
-
-//! Nav
-const navLinks = document.querySelectorAll(".nav h2[data-nav]");
-let navSelected = 1;
-
-for (let i = 0; i < [...navLinks].length; i++) {
-    const item = navLinks[i];
-    item.addEventListener("click", async function (e) {
-        navLinks[navSelected].classList.remove("nav-category__item--selected");
-        item.classList.add("nav-category__item--selected");
-        navSelected = item.dataset.nav;
-
-        switch (navSelected) {
-            case "1":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[0].style.display = "block";
-                break;
-            case "7":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
-
-                break;
-            default:
-        }
-    });
-}
+//! Drag
+const drag = document.querySelector(".play-main-time__drag");
+drag.addEventListener("input", function (e) {
+    const value = e.target.value;
+    const progress = `linear-gradient(90deg, #d14781 ${value}%, #e0b2b1 ${value}%)`;
+    drag.style.background = progress;
+});
 
 //! Content
 const content = document.querySelector(".content");
-
-//? Section
-let sectionsId = 0;
 const sections = document.querySelectorAll(".section");
-[...sections].forEach((item) => {
-    item.addEventListener("click", handleItemClick);
+const sliderList = document.querySelector(".slider-list");
+const navMainPage = document
+    .querySelector(".nav-category")
+    .querySelector(":nth-child(2)");
+
+navMainPage.addEventListener("click", function (e) {
+    content.style.display = "block";
+    top100.parentNode.style.display = "none";
 });
+
+const nextBtn = document.querySelector(".slider__next");
+const prevBtn = document.querySelector(".slider__prev");
+
+let sectionsId = 0;
+
+//? Content - Slider
+function handleBtnClick(direction) {
+    if (!sliderList.querySelector(".slider-list-item")) return;
+
+    const sliderScrollWidth =
+        Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
+
+    sliderList.scrollLeft +=
+        direction *
+        (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
+
+    handleIcon(
+        sliderScrollWidth,
+        sliderList.scrollLeft +
+            direction *
+                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
+    );
+}
+
+function handleIcon(scrollWidth, scrollLeft) {
+    scrollLeft <= 0
+        ? prevBtn.classList.add("hide")
+        : prevBtn.classList.remove("hide");
+
+    scrollLeft >= scrollWidth
+        ? nextBtn.classList.add("hide")
+        : nextBtn.classList.remove("hide");
+}
+
+async function handleSliderClick(e) {
+    const id = e.target.closest(".slider-list-item").dataset.id;
+
+    const response = await fetch(`${endpoint}infosong?id=${id}`);
+    const { data } = await response.json();
+
+    if (!data) {
+        handleItemClick(null, id);
+        return;
+    }
+    console.log("song");
+}
+
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    // console.log(data);
 
     for (let i = 0; i <= 14; i++) {
         switch (i) {
@@ -135,53 +151,13 @@ async function loadSections() {
                 sections[sectionsId] && sections[sectionsId].appendChild(list);
                 sectionsId++;
                 break;
+
+            default:
+                break;
         }
     }
 }
-//? ===Section===
 
-//? Slider
-const sliderList = document.querySelector(".slider-list");
-const nextBtn = document.querySelector(".slider__next");
-const prevBtn = document.querySelector(".slider__prev");
-async function handleSliderClick(e) {
-    const id = e.target.closest(".slider-list-item").dataset.id;
-
-    const response = await fetch(`${endpoint}infosong?id=${id}`);
-    const { data } = await response.json();
-
-    if (!data) {
-        handleItemClick(null, id);
-        return;
-    }
-    console.log("song");
-}
-function handleBtnClick(direction) {
-    if (!sliderList.querySelector(".slider-list-item")) return;
-
-    const sliderScrollWidth =
-        Math.floor(sliderList.scrollWidth - sliderList.clientWidth) - 1;
-
-    sliderList.scrollLeft +=
-        direction *
-        (sliderList.querySelector(".slider-list-item").offsetWidth + 20);
-
-    handleIcon(
-        sliderScrollWidth,
-        sliderList.scrollLeft +
-            direction *
-                (sliderList.querySelector(".slider-list-item").offsetWidth + 20)
-    );
-}
-function handleIcon(scrollWidth, scrollLeft) {
-    scrollLeft <= 0
-        ? prevBtn.classList.add("hide")
-        : prevBtn.classList.remove("hide");
-
-    scrollLeft >= scrollWidth
-        ? nextBtn.classList.add("hide")
-        : nextBtn.classList.remove("hide");
-}
 nextBtn.addEventListener("click", function (e) {
     handleBtnClick(1);
 });
@@ -189,58 +165,34 @@ prevBtn.addEventListener("click", function (e) {
     handleBtnClick(-1);
 });
 sliderList.addEventListener("click", handleSliderClick);
-//? ===Slider===
+loadSections();
 
 //! listSong
 const listSong = document.querySelector(".listSong");
 const listSong_content = document.querySelector(".listSong-content");
 const listSong_infor = document.querySelector(".listSong-infor");
 
+[...sections].forEach((item) => {
+    item.addEventListener("click", handleItemClick);
+});
+
 async function handleItemClick(e, id = null) {
     if (!id) {
-        id =
-            e.target.closest(".section-list-item") &&
-            e.target.closest(".section-list-item").dataset.id;
+        id = e.target.closest(".section-list-item").dataset.id;
     }
 
     const response = await fetch(`${endpoint}detailplaylist?id=${id}`);
     const { data } = await response.json();
 
-    [...pages].forEach((item) => {
-        item.style.display = "none";
-    });
-    pages[1].style.display = "flex";
-
-    listSong_infor.innerHTML = "";
-    listSong_content.innerHTML = "";
+    content.style.display = "none";
+    listSong.style.display = "flex";
 
     listSong_infor.insertAdjacentHTML("beforeend", loadListInfor(data));
-
     loadSingers(
         data.artists,
         document.querySelector(".listSong-infor__singers")
     );
-    // console.log(data);
 
-    listSong_content.insertAdjacentHTML(
-        "beforeend",
-        `<p class="listSong-content__desc">${data.sortDescription}
-</p>
-<div class="listSong-content-list">
-                        <div class="listSong-content-list-heading">
-                            <p class="listSong-content-list-heading__title">
-                                <i class="fa-solid fa-list"></i>
-                                BÀI HÁT
-                            </p>
-                            <p class="listSong-content-list-heading__title">
-                                ALBUM
-                            </p>
-                            <p class="listSong-content-list-heading__title">
-                                THỜI GIAN
-                            </p>
-                        </div>
-                    </div>`
-    );
     data.song.items.forEach((item) => {
         listSong_content
             .querySelector(".listSong-content-list")
@@ -341,17 +293,44 @@ function loadListContent(data) {
     return item;
 }
 
-//! pageTop
-const topContent = document.querySelector(".pageTop-content");
+//! pageTop100
+const top100 = document.querySelector(".pageTop100-content");
+
+const navLink = document
+    .querySelector(".nav-music")
+    .querySelector(":nth-child(3)");
+
+navLink.addEventListener("click", handleTop100LinkClick);
+
+function handleTop100LinkClick(e) {
+    content.style.display = "none";
+    top100.parentNode.style.display = "block";
+    if (!top100.querySelector(".section-wrap")) {
+        loadSection("top100");
+    }
+}
 
 async function loadSection(param) {
-    const sections = topContent.querySelectorAll(".section");
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();
+    [...data].forEach((item) => {
+        //! section
+        const section = document.createElement("div");
+        section.className = "section-wrap";
+        getListSong(item, section);
+    });
 
-    for (let i = 0; i < [...sections].length; i++) {
-        getListSong(data[i], sections[i]);
-    }
+    const lists = document.querySelectorAll(
+        ".pageTop100-content .section-wrap .section-list"
+    );
+    [...lists].forEach((item) => {
+        item.addEventListener("click", (e) => {
+            const id =
+                e.target.closest(".section-list-item") &&
+                e.target.closest(".section-list-item").dataset.id;
+            console.log(id);
+        });
+    });
 }
 
 function getListSong(item, section) {
@@ -368,7 +347,7 @@ function getListSong(item, section) {
         list.insertAdjacentHTML("beforeend", loadItem(item));
     });
     section.appendChild(list);
-    topContent.append(section);
+    top100.append(section);
 }
 
 function loadItem(item) {
@@ -402,11 +381,3 @@ function loadItem(item) {
 `;
     return template;
 }
-
-//! Drag
-const drag = document.querySelector(".play-main-time__drag");
-drag.addEventListener("input", function (e) {
-    const value = e.target.value;
-    const progress = `linear-gradient(90deg, #d14781 ${value}%, #e0b2b1 ${value}%)`;
-    drag.style.background = progress;
-});

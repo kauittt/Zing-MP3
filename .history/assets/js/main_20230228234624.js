@@ -1,5 +1,6 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
 
+const navLinks = document.querySelectorAll(".nav h2[data-nav]");
 const pages = document.querySelectorAll("div[data-page]");
 console.log(pages);
 
@@ -7,41 +8,7 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
-    // await loadSection("top100");
-}
-
-//! Nav
-const navLinks = document.querySelectorAll(".nav h2[data-nav]");
-let navSelected = 1;
-
-for (let i = 0; i < [...navLinks].length; i++) {
-    const item = navLinks[i];
-    item.addEventListener("click", async function (e) {
-        navLinks[navSelected].classList.remove("nav-category__item--selected");
-        item.classList.add("nav-category__item--selected");
-        navSelected = item.dataset.nav;
-
-        switch (navSelected) {
-            case "1":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[0].style.display = "block";
-                break;
-            case "7":
-                [...pages].forEach((item) => {
-                    item.style.display = "none";
-                });
-
-                pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadSection("top100"));
-
-                break;
-            default:
-        }
-    });
+    await loadSection("top100");
 }
 
 //! Content
@@ -50,6 +17,7 @@ const content = document.querySelector(".content");
 //? Section
 let sectionsId = 0;
 const sections = document.querySelectorAll(".section");
+console.log(sections);
 [...sections].forEach((item) => {
     item.addEventListener("click", handleItemClick);
 });
@@ -206,16 +174,10 @@ async function handleItemClick(e, id = null) {
     const response = await fetch(`${endpoint}detailplaylist?id=${id}`);
     const { data } = await response.json();
 
-    [...pages].forEach((item) => {
-        item.style.display = "none";
-    });
-    pages[1].style.display = "flex";
-
-    listSong_infor.innerHTML = "";
-    listSong_content.innerHTML = "";
+    content.style.display = "none";
+    listSong.style.display = "flex";
 
     listSong_infor.insertAdjacentHTML("beforeend", loadListInfor(data));
-
     loadSingers(
         data.artists,
         document.querySelector(".listSong-infor__singers")
