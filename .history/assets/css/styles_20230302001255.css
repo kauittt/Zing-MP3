@@ -932,8 +932,7 @@ a {
     transition: all 0.2s ease;
 }
 
-.play-main-list i:hover,
-.play-menu-volume i:hover {
+.play-main-list i:hover {
     color: var(--purple-primary);
 }
 

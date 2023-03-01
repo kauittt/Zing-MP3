@@ -504,19 +504,13 @@ time.addEventListener("input", function (e) {
     mp3.currentTime = e.target.value;
 });
 btns[1].addEventListener("click", function (e) {
-    console.log("Work");
     const item = songPlaying.previousElementSibling;
-    item && item.querySelector(".listSong-content-list-item-infor-img").click();
+    item && item.click();
 });
 btns[2].addEventListener("click", function (e) {
     btns[2].classList.toggle("fa-circle-pause");
     btns[2].classList.toggle("fa-circle-play");
     btns[2].classList.contains("fa-circle-pause") ? mp3.play() : mp3.pause();
-});
-btns[3].addEventListener("click", function (e) {
-    console.log("Work");
-    const item = songPlaying.nextElementSibling;
-    item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
 volumeIcon.addEventListener("click", function (e) {
     volumeIcon.classList.toggle("fa-volume-xmark");

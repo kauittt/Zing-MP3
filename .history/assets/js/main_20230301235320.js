@@ -366,14 +366,11 @@ function loadListContent(data) {
     return item;
 }
 
-let songPlaying = null;
 listSong_content.addEventListener("click", async function (e) {
-    if (e.target.closest(".listSong-content-list-item-infor-img")) {
-        await handlePlayMusic(
+    e.target.closest(".listSong-content-list-item-infor-img") &&
+        (await handlePlayMusic(
             e.target.closest(".listSong-content-list-item-infor-img")
-        );
-        songPlaying = e.target.closest(".listSong-content-list-item");
-    }
+        ));
 });
 
 async function handlePlayMusic(item) {
@@ -503,20 +500,10 @@ time.addEventListener("input", function (e) {
 
     mp3.currentTime = e.target.value;
 });
-btns[1].addEventListener("click", function (e) {
-    console.log("Work");
-    const item = songPlaying.previousElementSibling;
-    item && item.querySelector(".listSong-content-list-item-infor-img").click();
-});
 btns[2].addEventListener("click", function (e) {
     btns[2].classList.toggle("fa-circle-pause");
     btns[2].classList.toggle("fa-circle-play");
     btns[2].classList.contains("fa-circle-pause") ? mp3.play() : mp3.pause();
-});
-btns[3].addEventListener("click", function (e) {
-    console.log("Work");
-    const item = songPlaying.nextElementSibling;
-    item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
 volumeIcon.addEventListener("click", function (e) {
     volumeIcon.classList.toggle("fa-volume-xmark");
