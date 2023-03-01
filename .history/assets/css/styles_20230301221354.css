@@ -445,7 +445,7 @@ a {
 
 .listSong-infor__btn i {
     margin-right: 10px;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .listSong-content {
@@ -495,7 +495,6 @@ a {
 
 .listSong-content-list-heading__title:nth-child(2) {
     width: 40%;
-    padding: 10px;
 }
 
 .listSong-content-list-heading__title i {
@@ -567,17 +566,6 @@ a {
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--primary-text);
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.listSong-content-list-item-infor-song__singer {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .listSong-content-list-item-infor-song__singer span:hover,
@@ -596,7 +584,6 @@ a {
 
 .listSong-content-list-item__album {
     width: 40%;
-    padding: 10px;
 }
 
 .listSong-content-list-item__time {
@@ -873,8 +860,6 @@ a {
 
 .play-infor-img img {
     height: 100%;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .play-infor-song {
@@ -890,22 +875,15 @@ a {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .play-infor-song__singer {
-    margin-top: 3px;
     font-size: 1.2rem;
     color: var(--secondary-text);
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-.play-infor-song__singer span:hover {
-    color: var(--purple-primary);
-    cursor: pointer;
 }
 
 .play-main {

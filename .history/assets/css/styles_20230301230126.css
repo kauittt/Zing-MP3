@@ -445,7 +445,7 @@ a {
 
 .listSong-infor__btn i {
     margin-right: 10px;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .listSong-content {
@@ -495,7 +495,6 @@ a {
 
 .listSong-content-list-heading__title:nth-child(2) {
     width: 40%;
-    padding: 10px;
 }
 
 .listSong-content-list-heading__title i {
@@ -596,7 +595,6 @@ a {
 
 .listSong-content-list-item__album {
     width: 40%;
-    padding: 10px;
 }
 
 .listSong-content-list-item__time {

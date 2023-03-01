@@ -292,7 +292,7 @@ ${data.title}
 <p class="listSong-infor__liked"><span>${data.like}</span> người yêu thích</p>
 
 <div class="listSong-infor__btn">
-    <i class="fa-regular fa-circle-pause"></i>
+    <i class="fa-solid fa-pause"></i>
     TẠM DỪNG
 </div>`;
     return template;
@@ -415,12 +415,12 @@ async function handlePlayMusic(item) {
 
 listSong_infor.addEventListener("click", function (e) {
     if (e.target.matches(".listSong-infor__btn")) {
-        const listSongBtn = document.querySelector(".listSong-infor__btn i");
-        listSongBtn.classList.toggle("fa-circle-pause");
-        listSongBtn.classList.toggle("fa-circle-play");
-        listSongBtn.classList.contains("fa-circle-pause")
-            ? mp3.play()
-            : mp3.pause();
+        // listSongBtn.classList.toggle("fa-circle-pause");
+        // listSongBtn.classList.toggle("fa-circle-play");
+        // listSongBtn.classList.contains("fa-circle-pause")
+        //     ? mp3.play()
+        //     : mp3.pause();
+        btns[2].onclick;
     }
 });
 
@@ -496,6 +496,8 @@ function loadItem(item) {
 `;
     return template;
 }
+
+//! Drag
 
 //! Play
 const play = document.querySelector(".play");

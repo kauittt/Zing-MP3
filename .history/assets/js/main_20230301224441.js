@@ -195,7 +195,6 @@ sliderList.addEventListener("click", handleSliderClick);
 const listSong = document.querySelector(".listSong");
 const listSong_content = document.querySelector(".listSong-content");
 const listSong_infor = document.querySelector(".listSong-infor");
-
 let mp3 = new Audio();
 
 async function handleItemClick(e, id = null) {
@@ -292,7 +291,7 @@ ${data.title}
 <p class="listSong-infor__liked"><span>${data.like}</span> người yêu thích</p>
 
 <div class="listSong-infor__btn">
-    <i class="fa-regular fa-circle-pause"></i>
+    <i class="fa-solid fa-pause"></i>
     TẠM DỪNG
 </div>`;
     return template;
@@ -375,8 +374,7 @@ listSong_content.addEventListener("click", async function (e) {
 
 async function handlePlayMusic(item) {
     const id = item.dataset.id;
-    const infor = item.nextElementSibling;
-
+    console.log(item);
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/song/${id}`
     );
@@ -386,24 +384,6 @@ async function handlePlayMusic(item) {
         console.log("error");
         return;
     }
-
-    const img = document.querySelector(".play-infor-img img");
-    const heading = document.querySelector(".play-infor-song__name");
-    const singers = document.querySelector(".play-infor-song__singer");
-
-    img.setAttribute("src", item.querySelector("img").getAttribute("src"));
-    img.setAttribute("data-id", item.getAttribute("data-id"));
-
-    heading.textContent = infor.querySelector(
-        ".listSong-content-list-item-infor-song__name"
-    ).textContent;
-    heading.setAttribute("data-id", item.getAttribute("data-id"));
-
-    singers.innerHTML = "";
-    singers.innerHTML = infor.querySelector(
-        ".listSong-content-list-item-infor-song__singer"
-    ).innerHTML;
-
     mp3.src = data["128"];
 
     mp3.addEventListener("loadedmetadata", function (e) {
@@ -412,17 +392,6 @@ async function handlePlayMusic(item) {
         displayPlay();
     });
 }
-
-listSong_infor.addEventListener("click", function (e) {
-    if (e.target.matches(".listSong-infor__btn")) {
-        const listSongBtn = document.querySelector(".listSong-infor__btn i");
-        listSongBtn.classList.toggle("fa-circle-pause");
-        listSongBtn.classList.toggle("fa-circle-play");
-        listSongBtn.classList.contains("fa-circle-pause")
-            ? mp3.play()
-            : mp3.pause();
-    }
-});
 
 const logo = document.querySelector(".nav-logo");
 logo.addEventListener("click", async function (e) {
@@ -496,6 +465,8 @@ function loadItem(item) {
 `;
     return template;
 }
+
+//! Drag
 
 //! Play
 const play = document.querySelector(".play");

@@ -415,7 +415,7 @@ async function handlePlayMusic(item) {
 
 listSong_infor.addEventListener("click", function (e) {
     if (e.target.matches(".listSong-infor__btn")) {
-        const listSongBtn = document.querySelector(".listSong-infor__btn i");
+        const listSongBtn = document.querySelector(".listSong-infor__btn");
         listSongBtn.classList.toggle("fa-circle-pause");
         listSongBtn.classList.toggle("fa-circle-play");
         listSongBtn.classList.contains("fa-circle-pause")

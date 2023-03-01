@@ -195,6 +195,7 @@ sliderList.addEventListener("click", handleSliderClick);
 const listSong = document.querySelector(".listSong");
 const listSong_content = document.querySelector(".listSong-content");
 const listSong_infor = document.querySelector(".listSong-infor");
+const listSongBtn = document.querySelector(".listSong-infor__btn");
 
 let mp3 = new Audio();
 
@@ -292,7 +293,7 @@ ${data.title}
 <p class="listSong-infor__liked"><span>${data.like}</span> người yêu thích</p>
 
 <div class="listSong-infor__btn">
-    <i class="fa-regular fa-circle-pause"></i>
+    <i class="fa-solid fa-pause"></i>
     TẠM DỪNG
 </div>`;
     return template;
@@ -377,6 +378,7 @@ async function handlePlayMusic(item) {
     const id = item.dataset.id;
     const infor = item.nextElementSibling;
 
+    console.log(item);
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/song/${id}`
     );
@@ -413,15 +415,12 @@ async function handlePlayMusic(item) {
     });
 }
 
-listSong_infor.addEventListener("click", function (e) {
-    if (e.target.matches(".listSong-infor__btn")) {
-        const listSongBtn = document.querySelector(".listSong-infor__btn i");
-        listSongBtn.classList.toggle("fa-circle-pause");
-        listSongBtn.classList.toggle("fa-circle-play");
-        listSongBtn.classList.contains("fa-circle-pause")
-            ? mp3.play()
-            : mp3.pause();
-    }
+listSongBtn.addEventListener("click", function (e) {
+    listSongBtn.classList.toggle("fa-circle-pause");
+    listSongBtn.classList.toggle("fa-circle-play");
+    listSongBtn.classList.contains("fa-circle-pause")
+        ? mp3.play()
+        : mp3.pause();
 });
 
 const logo = document.querySelector(".nav-logo");
@@ -496,6 +495,8 @@ function loadItem(item) {
 `;
     return template;
 }
+
+//! Drag
 
 //! Play
 const play = document.querySelector(".play");
