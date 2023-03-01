@@ -361,8 +361,8 @@ a {
     width: 100%;
     min-height: 100vh;
     margin-left: 240px;
-    margin-top: 70px;
-    padding: 40px 60px 20px;
+    margin-top: 110px;
+    padding: 0 60px 20px;
     background: var(--bgr);
     overflow: hidden;
     display: none;
@@ -450,7 +450,7 @@ a {
 
 .listSong-content {
     margin-left: 330px;
-    flex-grow: 1;
+    /* flex-grow: 1; */
 }
 
 .listSong-content__desc {
@@ -506,11 +506,6 @@ a {
     display: flex;
     align-items: center;
     padding: 10px;
-    border-radius: 5px;
-}
-
-.listSong-content-list-item:hover {
-    background: var(--alpha-bg);
 }
 
 .listSong-content-list-item::after {

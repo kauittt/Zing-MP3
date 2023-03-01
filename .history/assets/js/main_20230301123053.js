@@ -154,7 +154,7 @@ async function handleSliderClick(e) {
     }
 
     console.log("song");
-    await handlePlayMusic(id);
+    handlePlayMusic(id);
 }
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;

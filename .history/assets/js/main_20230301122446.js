@@ -7,6 +7,7 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
+    // await loadSection("top100");
 }
 
 //! Nav
@@ -34,8 +35,7 @@ for (let i = 0; i < [...navLinks].length; i++) {
                 });
 
                 pages[2].style.display = "block";
-                !topContent.querySelector(".section-list-item") &&
-                    (await loadTop("top100"));
+
                 break;
             default:
         }
@@ -54,6 +54,7 @@ const sections = document.querySelectorAll(".section");
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    // console.log(data);
 
     for (let i = 0; i <= 14; i++) {
         switch (i) {
@@ -134,6 +135,12 @@ async function loadSections() {
                 sectionsId++;
                 break;
         }
+
+        if (i == 11) {
+            loadTop(data.items[11]);
+
+            // console.log(data.items[11]);
+        }
     }
 }
 //? ===Section===
@@ -154,7 +161,7 @@ async function handleSliderClick(e) {
     }
 
     console.log("song");
-    await handlePlayMusic(id);
+    handlePlayMusic(id);
 }
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
@@ -377,11 +384,9 @@ async function handlePlayMusic(id) {
 //! pageTop
 const topContent = document.querySelector(".pageTop-content");
 
-async function loadTop(param) {
-    const sections = topContent.querySelectorAll(".section");
-    const response = await fetch(`${endpoint}${param}`);
-    const { data } = await response.json();
-
+async function loadTop(data) {
+    console.log(data);
+    console.log(sections);
     for (let i = 0; i < [...sections].length; i++) {
         getListSong(data[i], sections[i]);
     }

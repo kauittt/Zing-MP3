@@ -7,6 +7,7 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
+    // await loadSection("top100");
 }
 
 //! Nav
@@ -35,7 +36,8 @@ for (let i = 0; i < [...navLinks].length; i++) {
 
                 pages[2].style.display = "block";
                 !topContent.querySelector(".section-list-item") &&
-                    (await loadTop("top100"));
+                    (await loadSection("top100"));
+
                 break;
             default:
         }
@@ -149,12 +151,10 @@ async function handleSliderClick(e) {
     const { data } = await response.json();
 
     if (!data) {
-        await handleItemClick(null, id);
+        handleItemClick(null, id);
         return;
     }
-
     console.log("song");
-    await handlePlayMusic(id);
 }
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
@@ -248,8 +248,6 @@ async function handleItemClick(e, id = null) {
 }
 
 function loadSingers(data, selector) {
-    if (!data) return;
-
     data.forEach((item) => {
         const template = `<span data-name="${item.alias}">${item.name}, </span>`;
         selector.insertAdjacentHTML("beforeend", template);
@@ -295,7 +293,6 @@ function loadListContent(data) {
     let minute = Math.floor(data.duration / 60);
     let second = "0" + (data.duration % 60);
     second = second.slice(-2);
-    // console.log(data);
 
     let item = document.createElement("div");
     item.className = "listSong-content-list-item";
@@ -304,9 +301,7 @@ function loadListContent(data) {
     <div class="listSong-content-list-item-infor">
         <i class="fa-solid fa-music"></i>
         <div
-            class="listSong-content-list-item-infor-img" data-id="${
-                data.encodeId
-            }"
+            class="listSong-content-list-item-infor-img"
         >
             <img
                 src="${data.thumbnailM}"
@@ -342,6 +337,12 @@ function loadListContent(data) {
     </p>
 `;
     item.insertAdjacentHTML("beforeend", template);
+    item.insertAdjacentHTML(
+        "beforeend",
+        `<div class="layer">
+    <i class="fa-regular fa-circle-play"></i>
+</div>`
+    );
 
     data.album &&
         loadSingers(
@@ -351,33 +352,10 @@ function loadListContent(data) {
     return item;
 }
 
-listSong_content.addEventListener("click", async function (e) {
-    e.target.closest(".listSong-content-list-item-infor-img") &&
-        (await handlePlayMusic(
-            e.target.closest(".listSong-content-list-item-infor-img").dataset.id
-        ));
-});
-
-async function handlePlayMusic(id) {
-    console.log("playmucsic");
-    const response = await fetch(
-        `https://zing-mp3-api.vercel.app/api/song/${id}`
-    );
-    const { data } = await response.json();
-
-    if (!data) {
-        console.log("err");
-        return;
-    }
-
-    console.log("work");
-    displayPlay();
-}
-
 //! pageTop
 const topContent = document.querySelector(".pageTop-content");
 
-async function loadTop(param) {
+async function loadSection(param) {
     const sections = topContent.querySelectorAll(".section");
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();
@@ -443,10 +421,3 @@ drag.addEventListener("input", function (e) {
     const progress = `linear-gradient(90deg, #d14781 ${value}%, #e0b2b1 ${value}%)`;
     drag.style.background = progress;
 });
-
-//! Play
-const play = document.querySelector(".play");
-
-function displayPlay() {
-    play.classList.add("show");
-}

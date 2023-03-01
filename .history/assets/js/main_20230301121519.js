@@ -7,6 +7,7 @@ loadAll();
 
 async function loadAll() {
     await loadSections();
+    // await loadSection("top100");
 }
 
 //! Nav
@@ -35,7 +36,8 @@ for (let i = 0; i < [...navLinks].length; i++) {
 
                 pages[2].style.display = "block";
                 !topContent.querySelector(".section-list-item") &&
-                    (await loadTop("top100"));
+                    (await loadSection("top100"));
+
                 break;
             default:
         }
@@ -154,7 +156,7 @@ async function handleSliderClick(e) {
     }
 
     console.log("song");
-    await handlePlayMusic(id);
+    handlePlayMusic(id);
 }
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
@@ -248,7 +250,10 @@ async function handleItemClick(e, id = null) {
 }
 
 function loadSingers(data, selector) {
-    if (!data) return;
+    if (!data) {
+        console.log(data);
+        console.log(selector);
+    }
 
     data.forEach((item) => {
         const template = `<span data-name="${item.alias}">${item.name}, </span>`;
@@ -377,7 +382,7 @@ async function handlePlayMusic(id) {
 //! pageTop
 const topContent = document.querySelector(".pageTop-content");
 
-async function loadTop(param) {
+async function loadSection(param) {
     const sections = topContent.querySelectorAll(".section");
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();

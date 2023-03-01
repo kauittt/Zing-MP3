@@ -450,7 +450,7 @@ a {
 
 .listSong-content {
     margin-left: 330px;
-    flex-grow: 1;
+    /* flex-grow: 1; */
 }
 
 .listSong-content__desc {
