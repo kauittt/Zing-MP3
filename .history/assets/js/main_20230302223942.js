@@ -128,6 +128,7 @@ async function loadSections() {
                     </div>`;
                     list.insertAdjacentHTML("beforeend", template);
                     if (i == 13) {
+                        console.log(item);
                         list.lastChild.querySelector(
                             ".section-list-item__desc"
                         ).textContent = "";
@@ -164,6 +165,7 @@ async function handleSliderClick(e) {
     }
 
     let item = document.createElement("div");
+    console.log("Slider cho nay");
 
     const template2 = `
     <div class="playList-wrapper-item-img" data-id="${data.encodeId}">
@@ -190,6 +192,8 @@ async function handleSliderClick(e) {
             data.album.artists,
             item.querySelector(".playList-wrapper-item-song__singer")
         );
+
+    console.log(item);
 
     await handlePlayMusic(item.querySelector(".playList-wrapper-item-img"));
 }
@@ -236,6 +240,7 @@ const listSong_infor = document.querySelector(".listSong-infor");
 let mp3 = new Audio();
 //! handle itemmmmmmmmmmmmmmmmmmmmm
 async function handleItemClick(e, id = null) {
+    console.log("handleItemClick");
     const key = id;
     if (!id) {
         const heading = e.target.closest(".section-list-item-img");
@@ -253,11 +258,13 @@ async function handleItemClick(e, id = null) {
         !key &&
         e.target.closest(".section-list").classList.contains("section-song")
     ) {
+        console.log("work");
         handlePlayMusic(e.target.closest(".section-list-item"));
         pages[3].style.display = "none";
 
         return;
     }
+    console.log("no ono onono");
 
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/playlist/${id}`
@@ -359,6 +366,7 @@ function loadListContent(data, flag = true) {
     let minute = Math.floor(data.duration / 60);
     let second = "0" + (data.duration % 60);
     second = second.slice(-2);
+    // console.log(data);
 
     let item = document.createElement("div");
     item.className = "listSong-content-list-item";
@@ -445,6 +453,7 @@ let songPlaying = null;
 listSong_content.addEventListener("click", async function (e) {
     if (e.target.closest(".listSong-content-list-item-infor-img")) {
         const item = e.target.closest(".listSong-content-list-item-infor-img");
+        console.log(item);
 
         songPlaying &&
             songPlaying.parentNode.parentNode.classList.remove("selected");
@@ -459,13 +468,11 @@ listSong_content.addEventListener("click", async function (e) {
 
         time.value = 0;
         mp3.currentTime = 0;
-        mp3.pause();
         if (!btns[2].classList.contains("fa-circle-pause")) {
             btns[2].classList.add("fa-circle-pause");
             btns[2].classList.remove("fa-circle-play");
         }
-        play.querySelector(".play-main-time__total").textContent =
-            item.parentNode.nextElementSibling.nextElementSibling.textContent;
+        console.log(item.nextElementSibling.tex);
         play.classList.add("show");
 
         await handlePlayMusic(
@@ -476,9 +483,14 @@ listSong_content.addEventListener("click", async function (e) {
 
 //! play musicccccccccccccccccccccccc
 async function handlePlayMusic(item) {
+    console.log("play music");
+    console.log(item);
     const id = item.dataset.id;
     const title = item.parentNode.querySelector("h3");
     const desc = item.parentNode.querySelector("p");
+    console.log(id);
+    console.log(title);
+    console.log(desc);
 
     const img = document.querySelector(".play-infor-img img");
     const heading = document.querySelector(".play-infor-song__name");
@@ -504,6 +516,12 @@ async function handlePlayMusic(item) {
     }
     //? prepare
     mp3.src = data["128"];
+    // time.value = 0;
+    // if (!btns[2].classList.contains("fa-circle-pause")) {
+    //     btns[2].classList.add("fa-circle-pause");
+    //     btns[2].classList.remove("fa-circle-play");
+    // }
+    // mp3.volume = volumeValue;
 
     mp3.addEventListener("loadedmetadata", function (e) {
         mp3.play();
@@ -599,27 +617,9 @@ time.addEventListener("input", function (e) {
     mp3.currentTime = e.target.value;
 });
 btns[1].addEventListener("click", function (e) {
-    const now = songPlaying.parentNode.parentNode;
-    if (
-        !now.previousElementSibling.classList.contains(
-            "listSong-content-list-item"
-        )
-    ) {
-        return;
-    }
-    now.classList.remove("selected");
-    songPlaying = now.previousElementSibling.querySelector(
-        ".listSong-content-list-item-infor-img"
-    );
-    now.previousElementSibling.classList.add("selected");
-
-    wrapListSongPlaying.classList.remove("selected");
-    wrapListSongPlaying = wrapList.querySelector(
-        `div[data-id="${songPlaying.dataset.id}"]`
-    ).parentNode;
-    wrapListSongPlaying.classList.add("selected");
-
-    songPlaying.click();
+    songPlaying.classList.remove("selected");
+    const item = songPlaying.previousElementSibling;
+    item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
 btns[2].addEventListener("click", function (e) {
     btns[2].classList.toggle("fa-circle-pause");
@@ -627,20 +627,9 @@ btns[2].addEventListener("click", function (e) {
     btns[2].classList.contains("fa-circle-pause") ? mp3.play() : mp3.pause();
 });
 btns[3].addEventListener("click", function (e) {
-    const now = songPlaying.parentNode.parentNode;
-    now.classList.remove("selected");
-    songPlaying = now.nextElementSibling.querySelector(
-        ".listSong-content-list-item-infor-img"
-    );
-    now.nextElementSibling.classList.add("selected");
-
-    wrapListSongPlaying.classList.remove("selected");
-    wrapListSongPlaying = wrapList.querySelector(
-        `div[data-id="${songPlaying.dataset.id}"]`
-    ).parentNode;
-    wrapListSongPlaying.classList.add("selected");
-
-    songPlaying.click();
+    songPlaying.classList.remove("selected");
+    const item = songPlaying.nextElementSibling;
+    item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
 volumeIcon.addEventListener("click", function (e) {
     volumeIcon.classList.toggle("fa-volume-xmark");

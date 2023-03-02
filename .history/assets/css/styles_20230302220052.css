@@ -1198,18 +1198,13 @@ a {
     position: fixed;
     inset: 0;
     background: var(--bgr);
-    display: none;
-}
-
-.content.load .loading {
-    display: flex;
 }
 
 .loading__desc {
     z-index: 10;
     font-weight: 700;
     font-size: 3rem;
-    line-height: 35px;
+    line-height: 1;
     background-color: #4158d0;
     background-image: linear-gradient(
         43deg,

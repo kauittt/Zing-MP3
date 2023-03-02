@@ -1198,19 +1198,14 @@ a {
     position: fixed;
     inset: 0;
     background: var(--bgr);
-    display: none;
-}
-
-.content.load .loading {
-    display: flex;
 }
 
 .loading__desc {
     z-index: 10;
     font-weight: 700;
     font-size: 3rem;
-    line-height: 35px;
-    background-color: #4158d0;
+    /* color: white; */
+    /* background-color: #4158d0; */
     background-image: linear-gradient(
         43deg,
         #4158d0 0%,
@@ -1219,7 +1214,8 @@ a {
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent;
+    background-clip: text;
+    /* color: transparent; */
 }
 
 .circle-loading {

@@ -1198,11 +1198,6 @@ a {
     position: fixed;
     inset: 0;
     background: var(--bgr);
-    display: none;
-}
-
-.content.load .loading {
-    display: flex;
 }
 
 .loading__desc {
