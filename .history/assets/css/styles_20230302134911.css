@@ -507,9 +507,9 @@ a {
     border-radius: 5px;
 }
 
-.listSong-content-list-item:hover,
-.listSong-content-list-item.selected,
-.playList-wrapper-item:hover {
+.listSong-content-list-item:hover
+/* ,
+.playList-wrapper-item:hover */ {
     background: var(--alpha-bg);
 }
 
@@ -555,12 +555,12 @@ a {
 .listSong-content-list-item-infor-song {
     display: flex;
     flex-direction: column;
+    row-gap: 4px;
 }
 
 .listSong-content-list-item-infor-song__name {
     font-size: 1.4rem;
     font-weight: 500;
-    line-height: 18px;
     color: var(--primary-text);
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -569,8 +569,6 @@ a {
 }
 
 .listSong-content-list-item-infor-song__singer {
-    line-height: 18px;
-
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -600,7 +598,6 @@ a {
 .listSong-content-list-item__album {
     width: 40%;
     padding: 10px;
-    line-height: 18px;
 }
 
 .listSong-content-list-item__time {
@@ -1079,11 +1076,6 @@ a {
     border-radius: 8px;
 }
 
-.playList-wrapper-item.selected {
-    background-color: var(--purple-primary);
-    color: white;
-}
-
 .playList-wrapper-item-img {
     position: relative;
     margin-right: 10px;
@@ -1103,7 +1095,6 @@ a {
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--primary-text);
-    line-height: 18px;
 }
 
 .playList-wrapper-item-song__singer {
@@ -1154,7 +1145,7 @@ a {
     width: 340px;
     padding: 20px;
     background: var(--bgr);
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
 .error-content i {

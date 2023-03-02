@@ -47,7 +47,7 @@ a {
     width: 100%;
     min-height: 100vh;
     margin-left: 240px;
-    padding: 0 60px 20px;
+    padding: 0 60px 100px;
     background: var(--bgr);
     overflow: hidden;
 }

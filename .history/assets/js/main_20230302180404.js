@@ -113,9 +113,9 @@ async function loadSections() {
                             </div>
                         </div>
                         <div> 
-                        <p class="section-list-item__heading">
+                        <h3 class="section-list-item__heading">
                         ${itemChild.title}
-                    </p>
+                    </h3>
                     <p class="section-list-item__desc">
                         ${itemChild.sortDescription}
                     </p>

@@ -507,9 +507,9 @@ a {
     border-radius: 5px;
 }
 
-.listSong-content-list-item:hover,
-.listSong-content-list-item.selected,
-.playList-wrapper-item:hover {
+.listSong-content-list-item:hover
+/* ,
+.playList-wrapper-item:hover */ {
     background: var(--alpha-bg);
 }
 
@@ -600,7 +600,6 @@ a {
 .listSong-content-list-item__album {
     width: 40%;
     padding: 10px;
-    line-height: 18px;
 }
 
 .listSong-content-list-item__time {
@@ -1077,11 +1076,6 @@ a {
     width: 100%;
     padding: 8px;
     border-radius: 8px;
-}
-
-.playList-wrapper-item.selected {
-    background-color: var(--purple-primary);
-    color: white;
 }
 
 .playList-wrapper-item-img {

@@ -507,9 +507,9 @@ a {
     border-radius: 5px;
 }
 
-.listSong-content-list-item:hover,
-.listSong-content-list-item.selected,
-.playList-wrapper-item:hover {
+.listSong-content-list-item:hover
+/* ,
+.playList-wrapper-item:hover */ {
     background: var(--alpha-bg);
 }
 

@@ -386,10 +386,7 @@ a {
     overflow: hidden;
 }
 
-.listSong-infor-img:hover .layer,
-.playList-wrapper-item-img:hover .layer,
-.listSong-content-list-item-infor-img:hover .layer,
-.section-list-item-img:hover .layer {
+.listSong-infor-img:hover .layer {
     opacity: 1;
 }
 
@@ -415,6 +412,12 @@ a {
 }
 
 .listSong-infor__singers {
+}
+
+.listSong-infor__singers span:hover {
+    color: var(--purple-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
 }
 
 .listSong-infor__liked {
@@ -508,7 +511,6 @@ a {
 }
 
 .listSong-content-list-item:hover,
-.listSong-content-list-item.selected,
 .playList-wrapper-item:hover {
     background: var(--alpha-bg);
 }
@@ -542,6 +544,10 @@ a {
     border-radius: 5px;
 }
 
+.listSong-content-list-item-infor-img:hover .layer {
+    opacity: 1;
+}
+
 .listSong-content-list-item-infor-img:hover .layer i {
     color: white;
 }
@@ -555,12 +561,12 @@ a {
 .listSong-content-list-item-infor-song {
     display: flex;
     flex-direction: column;
+    row-gap: 4px;
 }
 
 .listSong-content-list-item-infor-song__name {
     font-size: 1.4rem;
     font-weight: 500;
-    line-height: 18px;
     color: var(--primary-text);
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -569,8 +575,6 @@ a {
 }
 
 .listSong-content-list-item-infor-song__singer {
-    line-height: 18px;
-
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -578,15 +582,9 @@ a {
 }
 
 .listSong-content-list-item-infor-song__singer span:hover,
-.listSong-content-list-item__album:hover,
-.listSong-infor__singers span:hover,
-.section-list-item span:hover,
-.play-infor-song__singer span:hover,
-.playList-wrapper-item-song__singer span:hover,
-.error-content i:hover {
+.listSong-content-list-item__album:hover {
     color: var(--purple-primary);
     cursor: pointer;
-    transition: all 0.15s ease;
 }
 
 .listSong-content-list-item-infor-song__singer,
@@ -600,7 +598,6 @@ a {
 .listSong-content-list-item__album {
     width: 40%;
     padding: 10px;
-    line-height: 18px;
 }
 
 .listSong-content-list-item__time {
@@ -761,11 +758,20 @@ a {
     color: var(--secondary-text);
 }
 
+.section-list-item span:hover {
+    color: var(--purple-primary);
+    cursor: pointer;
+}
+
 .section-list-item-img {
     position: relative;
     width: 100%;
     overflow: hidden;
     border-radius: 5px;
+}
+
+.section-list-item-img:hover .layer {
+    opacity: 1;
 }
 
 .section-list-item-img:hover img {
@@ -896,6 +902,11 @@ a {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.play-infor-song__singer span:hover {
+    color: var(--purple-primary);
+    cursor: pointer;
 }
 
 .play-main {
@@ -1061,12 +1072,6 @@ a {
 }
 
 .playList-wrapper {
-    scroll-behavior: smooth;
-    overflow: hidden;
-}
-
-.playList-wrapper .listSong-content-list-item {
-    padding: 0;
 }
 
 .playList-wrapper-item {
@@ -1079,13 +1084,7 @@ a {
     border-radius: 8px;
 }
 
-.playList-wrapper-item.selected {
-    background-color: var(--purple-primary);
-    color: white;
-}
-
 .playList-wrapper-item-img {
-    position: relative;
     margin-right: 10px;
     height: 100%;
 }
@@ -1103,7 +1102,6 @@ a {
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--primary-text);
-    line-height: 18px;
 }
 
 .playList-wrapper-item-song__singer {
@@ -1123,66 +1121,4 @@ a {
 
 .playList-wrapper-item.selected .playList-wrapper-item-song__singer {
     color: hsla(0, 0%, 100%, 0.6);
-}
-
-/*! Error */
-.error {
-    z-index: 5;
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--dark-bg);
-    /* display: none; */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.error.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.error-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 340px;
-    padding: 20px;
-    background: var(--bgr);
-    border-radius: 8px;
-}
-
-.error-content i {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 2.4rem;
-    color: var(--secondary-text);
-}
-
-.error-content__heading {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 8px 25px;
-    font-size: 1.8rem;
-    font-weight: 700;
-    border-radius: 999px;
-    color: var(--primary-text);
-    background: #f8e71c;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    pointer-events: none;
-}
-
-.error-content__desc {
-    text-align: center;
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 21px;
-    color: var(--secondary-text);
-    pointer-events: none;
 }

@@ -81,6 +81,7 @@ async function loadSections() {
             case 13:
             case 14:
                 const item = data.items[i];
+                console.log(item);
                 sections[sectionsId] &&
                     sections[sectionsId].insertAdjacentHTML(
                         "beforeend",
@@ -90,9 +91,7 @@ async function loadSections() {
                     );
 
                 const list = document.createElement("div");
-                list.className = `section-list ${
-                    item.type == "song" ? "section-song" : ""
-                }`;
+                list.className = `section-list`;
                 if (i == 2 || i == 3) {
                     sectionsId++;
                     continue;
@@ -112,14 +111,12 @@ async function loadSections() {
                                 ></i>
                             </div>
                         </div>
-                        <div> 
-                        <p class="section-list-item__heading">
-                        ${itemChild.title}
-                    </p>
-                    <p class="section-list-item__desc">
-                        ${itemChild.sortDescription}
-                    </p>
-                        </div>
+                        <h3 class="section-list-item__heading">
+                            ${itemChild.title}
+                        </h3>
+                        <p class="section-list-item__desc">
+                            ${itemChild.sortDescription}
+                        </p>
                     </div>`;
                     list.insertAdjacentHTML("beforeend", template);
 
@@ -227,27 +224,11 @@ const listSong_infor = document.querySelector(".listSong-infor");
 let mp3 = new Audio();
 
 async function handleItemClick(e, id = null) {
-    const key = id;
     if (!id) {
-        const heading = e.target.closest(".section-list-item-img");
-        const img = e.target.closest(".section-list-item__heading");
-        if (!heading && !img) {
-            return;
-        }
         id =
             e.target.closest(".section-list-item") &&
             e.target.closest(".section-list-item").dataset.id;
     }
-
-    if (
-        !key &&
-        e.target.closest(".section-list").classList.contains("section-song")
-    ) {
-        console.log("work");
-        handlePlayMusic(e.target.closest(".section-list-item"));
-        return;
-    }
-    console.log("no ono onono");
 
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/playlist/${id}`
@@ -456,7 +437,6 @@ listSong_content.addEventListener("click", async function (e) {
 async function handlePlayMusic(item) {
     const id = item.dataset.id;
     const infor = item.nextElementSibling.querySelectorAll("p");
-    console.log(id, infor);
 
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/song/${id}`

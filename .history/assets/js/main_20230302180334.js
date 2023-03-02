@@ -113,9 +113,9 @@ async function loadSections() {
                             </div>
                         </div>
                         <div> 
-                        <p class="section-list-item__heading">
+                        <h3 class="section-list-item__heading">
                         ${itemChild.title}
-                    </p>
+                    </h3>
                     <p class="section-list-item__desc">
                         ${itemChild.sortDescription}
                     </p>
@@ -456,7 +456,6 @@ listSong_content.addEventListener("click", async function (e) {
 async function handlePlayMusic(item) {
     const id = item.dataset.id;
     const infor = item.nextElementSibling.querySelectorAll("p");
-    console.log(id, infor);
 
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/song/${id}`

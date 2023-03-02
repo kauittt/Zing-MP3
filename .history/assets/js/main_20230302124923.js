@@ -1,6 +1,7 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
 
 const pages = document.querySelectorAll("div[data-page]");
+console.log(pages);
 
 loadAll();
 
@@ -53,6 +54,7 @@ const sections = document.querySelectorAll(".section");
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+
     for (let i = 0; i <= 14; i++) {
         switch (i) {
             case 0:
@@ -81,6 +83,7 @@ async function loadSections() {
             case 13:
             case 14:
                 const item = data.items[i];
+
                 sections[sectionsId] &&
                     sections[sectionsId].insertAdjacentHTML(
                         "beforeend",
@@ -90,9 +93,7 @@ async function loadSections() {
                     );
 
                 const list = document.createElement("div");
-                list.className = `section-list ${
-                    item.type == "song" ? "section-song" : ""
-                }`;
+                list.className = `section-list`;
                 if (i == 2 || i == 3) {
                     sectionsId++;
                     continue;
@@ -112,14 +113,12 @@ async function loadSections() {
                                 ></i>
                             </div>
                         </div>
-                        <div> 
-                        <p class="section-list-item__heading">
-                        ${itemChild.title}
-                    </p>
-                    <p class="section-list-item__desc">
-                        ${itemChild.sortDescription}
-                    </p>
-                        </div>
+                        <h3 class="section-list-item__heading">
+                            ${itemChild.title}
+                        </h3>
+                        <p class="section-list-item__desc">
+                            ${itemChild.sortDescription}
+                        </p>
                     </div>`;
                     list.insertAdjacentHTML("beforeend", template);
 
@@ -154,35 +153,8 @@ async function handleSliderClick(e) {
         return;
     }
 
-    let item = document.createElement("div");
-
-    const template2 = `
-    <div class="playList-wrapper-item-img" data-id="${data.encodeId}">
-        <img
-            src="${data.thumbnailM}"
-            alt=""
-        />
-        <div class="layer">
-                                    <i class="fa-regular fa-circle-play"></i>
-                                </div>
-    </div>
-    <div class="playList-wrapper-item-song">
-        <p class="playList-wrapper-item-song__name">
-        ${data.title}
-        </p>
-        <p class="playList-wrapper-item-song__singer">
-        </p>
-    </div>
-`;
-    item.insertAdjacentHTML("beforeend", template2);
-
-    data.album &&
-        loadSingers(
-            data.album.artists,
-            item.querySelector(".playList-wrapper-item-song__singer")
-        );
-
-    await handlePlayMusic(item.querySelector(".playList-wrapper-item-img"));
+    console.log("song");
+    await handlePlayMusic(id);
 }
 function handleBtnClick(direction) {
     if (!sliderList.querySelector(".slider-list-item")) return;
@@ -227,31 +199,18 @@ const listSong_infor = document.querySelector(".listSong-infor");
 let mp3 = new Audio();
 
 async function handleItemClick(e, id = null) {
-    const key = id;
     if (!id) {
-        const heading = e.target.closest(".section-list-item-img");
-        const img = e.target.closest(".section-list-item__heading");
-        if (!heading && !img) {
-            return;
-        }
         id =
             e.target.closest(".section-list-item") &&
             e.target.closest(".section-list-item").dataset.id;
     }
 
-    if (
-        !key &&
-        e.target.closest(".section-list").classList.contains("section-song")
-    ) {
-        console.log("work");
-        handlePlayMusic(e.target.closest(".section-list-item"));
-        return;
-    }
-    console.log("no ono onono");
-
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/playlist/${id}`
     );
+    // const response = await fetch(
+    //     `https://zing-mp3-api.vercel.app/api/playlist/ZABDOABU`
+    // );
     const { data } = await response.json();
 
     [...pages].forEach((item) => {
@@ -292,11 +251,6 @@ async function handleItemClick(e, id = null) {
         listSong_content
             .querySelector(".listSong-content-list")
             .appendChild(loadListContent(item));
-    });
-
-    wrapList.innerHTML = "";
-    data.song.items.forEach((item) => {
-        wrapList.insertAdjacentHTML("beforeend", loadListContent(item, false));
     });
 }
 
@@ -344,7 +298,7 @@ ${data.title}
     return template;
 }
 
-function loadListContent(data, flag = true) {
+function loadListContent(data) {
     let minute = Math.floor(data.duration / 60);
     let second = "0" + (data.duration % 60);
     second = second.slice(-2);
@@ -384,7 +338,13 @@ function loadListContent(data, flag = true) {
             </p>
         </div>
 
-    
+        ${
+            data.streamingStatus == 2
+                ? `<div class="vip">
+        <img src="https://zing-mp3-clone-three.vercel.app/static/media/vip-label.ddbac03b04ea429116ca6f7aad90416b.svg" alt="">
+    </div>`
+                : ""
+        }
     </div>
 
     <p class="listSong-content-list-item__album" data-id="${
@@ -396,67 +356,29 @@ function loadListContent(data, flag = true) {
         ${minute}:${second}
     </p>
 `;
-
-    const template2 = `<div class="playList-wrapper-item">
-    <div class="playList-wrapper-item-img" data-id="${data.encodeId}">
-        <img
-            src="${data.thumbnailM}"
-            alt=""
-        />
-        <div class="layer">
-                                    <i class="fa-regular fa-circle-play"></i>
-                                </div>
-    </div>
-    <div class="playList-wrapper-item-song">
-        <p class="playList-wrapper-item-song__name">
-        ${data.title}
-        </p>
-        <p class="playList-wrapper-item-song__singer">
-        </p>
-    </div>
-</div>`;
-    // if (!flag) return template2;
-    item.insertAdjacentHTML("beforeend", flag ? template : template2);
+    item.insertAdjacentHTML("beforeend", template);
 
     data.album &&
         loadSingers(
             data.album.artists,
-            flag
-                ? item.querySelector(
-                      ".listSong-content-list-item-infor-song__singer"
-                  )
-                : item.querySelector(".playList-wrapper-item-song__singer")
+            item.querySelector(".listSong-content-list-item-infor-song__singer")
         );
-    return flag ? item : item.innerHTML;
+    return item;
 }
 
 let songPlaying = null;
-
 listSong_content.addEventListener("click", async function (e) {
     if (e.target.closest(".listSong-content-list-item-infor-img")) {
-        const item = e.target.closest(".listSong-content-list-item-infor-img");
-
-        songPlaying &&
-            songPlaying.parentNode.parentNode.classList.remove("selected");
-        songPlaying = item;
-        songPlaying.parentNode.parentNode.classList.add("selected");
-
-        wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
-        wrapListSongPlaying = wrapList.querySelector(
-            `div[data-id="${songPlaying.dataset.id}"]`
-        ).parentNode;
-        wrapListSongPlaying.classList.add("selected");
-
         await handlePlayMusic(
             e.target.closest(".listSong-content-list-item-infor-img")
         );
+        songPlaying = e.target.closest(".listSong-content-list-item");
     }
 });
 
 async function handlePlayMusic(item) {
     const id = item.dataset.id;
-    const infor = item.nextElementSibling.querySelectorAll("p");
-    console.log(id, infor);
+    const infor = item.nextElementSibling;
 
     const response = await fetch(
         `https://zing-mp3-api.vercel.app/api/song/${id}`
@@ -464,7 +386,7 @@ async function handlePlayMusic(item) {
     const { data } = await response.json();
 
     if (!data) {
-        error.classList.add("show");
+        console.log("error");
         return;
     }
 
@@ -475,11 +397,15 @@ async function handlePlayMusic(item) {
     img.setAttribute("src", item.querySelector("img").getAttribute("src"));
     img.setAttribute("data-id", item.getAttribute("data-id"));
 
-    heading.textContent = infor[0].textContent;
+    heading.textContent = infor.querySelector(
+        ".listSong-content-list-item-infor-song__name"
+    ).textContent;
     heading.setAttribute("data-id", item.getAttribute("data-id"));
 
     singers.innerHTML = "";
-    singers.innerHTML = infor[1].innerHTML;
+    singers.innerHTML = infor.querySelector(
+        ".listSong-content-list-item-infor-song__singer"
+    ).innerHTML;
 
     mp3.src = data["128"];
 
@@ -578,7 +504,7 @@ time.addEventListener("input", function (e) {
     mp3.currentTime = e.target.value;
 });
 btns[1].addEventListener("click", function (e) {
-    songPlaying.classList.remove("selected");
+    console.log("Work");
     const item = songPlaying.previousElementSibling;
     item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
@@ -588,7 +514,7 @@ btns[2].addEventListener("click", function (e) {
     btns[2].classList.contains("fa-circle-pause") ? mp3.play() : mp3.pause();
 });
 btns[3].addEventListener("click", function (e) {
-    songPlaying.classList.remove("selected");
+    console.log("Work");
     const item = songPlaying.nextElementSibling;
     item && item.querySelector(".listSong-content-list-item-infor-img").click();
 });
@@ -651,63 +577,17 @@ function formatTime(time) {
 }
 
 //! playList
-const playListIcon = document.querySelector(".play-menu>i");
+const playListIcon = document.querySelector(".play-menu fa-list-ul");
+console.log(playListIcon);
 const playList = document.querySelector(".playList");
-const wrapList = document.querySelector(".playList-wrapper");
-let wrapListSongPlaying = null;
 
-wrapList.addEventListener("wheel", function (e) {
-    e.preventDefault();
-    const delta = e.deltaY;
+// playListIcon.addEventListener("click", handlePlayListDisplay);
 
-    wrapList.scrollTop += delta;
+const logo = document.querySelector(".nav-logo");
+logo.addEventListener("click", function (e) {
+    displayPlay();
 });
-wrapList.addEventListener("click", async function (e) {
-    if (e.target.closest(".playList-wrapper-item-img")) {
-        const id = e.target.closest(".playList-wrapper-item-img").dataset.id;
-        console.log("work");
-
-        wrapListSongPlaying.classList.remove("selected");
-        wrapListSongPlaying = e.target.closest(".playList-wrapper-item");
-        wrapListSongPlaying.classList.add("selected");
-
-        songPlaying &&
-            songPlaying.parentNode.parentNode.classList.remove("selected");
-        songPlaying = listSong_content.querySelector(`div[data-id="${id}"]`);
-        songPlaying.parentNode.parentNode.classList.add("selected");
-
-        await handlePlayMusic(e.target.closest(".playList-wrapper-item-img"));
-
-        songPlaying =
-            listSong -
-            content -
-            list.querySelector(
-                `div[data-id="${
-                    e.target.closest(".playList-wrapper-item-img").dataset.id
-                }"`
-            );
-    }
-});
-
-playListIcon.addEventListener("click", handlePlayListDisplay);
-
-// const logo = document.querySelector(".nav-logo");
-// logo.addEventListener("click", function (e) {
-//     displayPlay();
-// });
 
 function handlePlayListDisplay(e) {
     playList.classList.toggle("show");
 }
-
-//! error
-const error = document.querySelector(".error");
-error.addEventListener("click", function (e) {
-    if (e.target.matches(".error")) {
-        error.classList.remove("show");
-    }
-});
-
-error.querySelector("i").addEventListener("click", function (e) {
-    error.classList.remove("show");
-});

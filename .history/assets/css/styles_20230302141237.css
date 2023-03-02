@@ -508,8 +508,7 @@ a {
 }
 
 .listSong-content-list-item:hover,
-.listSong-content-list-item.selected,
-.playList-wrapper-item:hover {
+.listSong-content-list-item.selected {
     background: var(--alpha-bg);
 }
 
