@@ -6,7 +6,6 @@ async function loadTop(param) {
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();
 
-    console.log(data);
     for (let i = 0; i < [...sections].length; i++) {
         getListSong(data[i], sections[i]);
     }
@@ -23,19 +22,21 @@ function getListSong(item, section) {
 
     item.items.forEach((item) => {
         //! listItem
-        list.insertAdjacentHTML("beforeend", loadSectionListItem(item));
+        list.insertAdjacentHTML("beforeend", loadItem(item));
     });
-
     section.appendChild(list);
     topContent.append(section);
 }
 
-function loadSectionListItem(item, artists) {
-    const div = document.createElement("div");
-
+function loadItem(item) {
+    let singers = "";
+    item.artists.forEach((item) => {
+        singers += item.name + ", ";
+    });
+    singers = singers.slice(0, -2);
     const template = `
             <div class="section-list-item" data-id="${item.encodeId}">
-                <div class="section-list-item-img" data-id="${item.encodeId}">
+                <div class="section-list-item-img" ">
                     <img
                         src="${item.thumbnailM}"
                         alt=""
@@ -48,19 +49,13 @@ function loadSectionListItem(item, artists) {
                         ></i>
                     </div>
                 </div>
-
-                <div class="section-list-item-infor">
-                    <h3 class="section-list-item__heading ">
-                        ${item.title}
-                    </h3>
-                    <p class="section-list-item__desc">
-                    </p>
-                </div>
+                <h3 class="section-list-item__heading ">
+                    ${item.title}
+                </h3>
+                <p class="section-list-item__desc">
+                    ${singers}}
+                </p>
             </div>
 `;
-    div.insertAdjacentHTML("beforeend", template);
-
-    loadSingers(artists, div.querySelector(".section-list-item__desc"));
-
-    return div.innerHTML;
+    return template;
 }

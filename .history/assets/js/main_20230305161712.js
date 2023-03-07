@@ -3,11 +3,21 @@ const endpoint = `https://apizingmp3.vercel.app/api/`;
 const pages = document.querySelectorAll("div[data-page]");
 const content = document.querySelector(".content");
 
+function findIdPage(arr, id) {
+    return [...arr].findIndex((item) => {
+        item.getAttribute("data-page") == id;
+    });
+}
+let pageShowing = pages[findIdPage(pages, 0)];
+console.log(findIdPage(pages, 0));
+console.log(pageShowing);
+
 loadAll();
 
 async function loadAll() {
     pages[3].style.display = "flex";
     await loadSections();
+
     pages[3].style.display = "none";
 }
 
@@ -362,6 +372,7 @@ function loadListContent(data, flag = true) {
 
     let item = document.createElement("div");
     item.className = "listSong-content-list-item";
+    item.setAttribute("data-id", data.encodeId);
 
     const template = `
     <div class="listSong-content-list-item-infor">
@@ -407,7 +418,7 @@ function loadListContent(data, flag = true) {
     </p>
 `;
 
-    const template2 = `<div class="playList-wrapper-item">
+    const template2 = `<div class="playList-wrapper-item" data-id="${data.encodeId}">
     <div class="playList-wrapper-item-img" data-id="${data.encodeId}">
         <img
             src="${data.thumbnailM}"
@@ -442,37 +453,37 @@ function loadListContent(data, flag = true) {
 
 let songPlaying = null;
 
-listSong_content.addEventListener("click", async function (e) {
-    if (e.target.closest(".listSong-content-list-item-infor-img")) {
-        const item = e.target.closest(".listSong-content-list-item-infor-img");
+// listSong_content.addEventListener("click", async function (e) {
+//     if (e.target.closest(".listSong-content-list-item-infor-img")) {
+//         const item = e.target.closest(".listSong-content-list-item-infor-img");
 
-        songPlaying &&
-            songPlaying.parentNode.parentNode.classList.remove("selected");
-        songPlaying = item;
-        songPlaying.parentNode.parentNode.classList.add("selected");
+//         songPlaying &&
+//             songPlaying.parentNode.parentNode.classList.remove("selected");
+//         songPlaying = item;
+//         songPlaying.parentNode.parentNode.classList.add("selected");
 
-        wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
-        wrapListSongPlaying = wrapList.querySelector(
-            `div[data-id="${songPlaying.dataset.id}"]`
-        ).parentNode;
-        wrapListSongPlaying.classList.add("selected");
+//         wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
+//         wrapListSongPlaying = wrapList.querySelector(
+//             `div[data-id="${songPlaying.dataset.id}"]`
+//         ).parentNode;
+//         wrapListSongPlaying.classList.add("selected");
 
-        time.value = 0;
-        mp3.currentTime = 0;
-        mp3.pause();
-        if (!btns[2].classList.contains("fa-circle-pause")) {
-            btns[2].classList.add("fa-circle-pause");
-            btns[2].classList.remove("fa-circle-play");
-        }
-        play.querySelector(".play-main-time__total").textContent =
-            item.parentNode.nextElementSibling.nextElementSibling.textContent;
-        play.classList.add("show");
+//         time.value = 0;
+//         mp3.currentTime = 0;
+//         mp3.pause();
+//         if (!btns[2].classList.contains("fa-circle-pause")) {
+//             btns[2].classList.add("fa-circle-pause");
+//             btns[2].classList.remove("fa-circle-play");
+//         }
+//         play.querySelector(".play-main-time__total").textContent =
+//             item.parentNode.nextElementSibling.nextElementSibling.textContent;
+//         play.classList.add("show");
 
-        await handlePlayMusic(
-            e.target.closest(".listSong-content-list-item-infor-img")
-        );
-    }
-});
+//         await handlePlayMusic(
+//             e.target.closest(".listSong-content-list-item-infor-img")
+//         );
+//     }
+// });
 
 //! play musicccccccccccccccccccccccc
 async function handlePlayMusic(item) {
@@ -598,6 +609,20 @@ time.addEventListener("input", function (e) {
 
     mp3.currentTime = e.target.value;
 });
+
+btns[0].addEventListener("click", function (e) {
+    if (!listSong_content.querySelector(".listSong-content-list-item")) return;
+
+    const list = listSong_content.querySelector(".listSong-content-list");
+    let min = 2;
+    const children = list.children.length;
+
+    const random = Math.floor(Math.random() * (children - min + 1) + min);
+
+    list.querySelector(`:nth-child(${random})`)
+        .querySelector(".listSong-content-list-item-infor-img")
+        .click();
+});
 btns[1].addEventListener("click", function (e) {
     const now = songPlaying.parentNode.parentNode;
     if (
@@ -642,6 +667,17 @@ btns[3].addEventListener("click", function (e) {
 
     songPlaying.click();
 });
+
+btns[4].addEventListener("click", function (e) {
+    if (!listSong_content.querySelector(".listSong-content-list-item")) return;
+
+    const list = listSong_content.querySelector(".listSong-content-list");
+
+    list.querySelector(`.listSong-content-list-item:nth-child(2)`)
+        .querySelector(".listSong-content-list-item-infor-img")
+        .click();
+});
+
 volumeIcon.addEventListener("click", function (e) {
     volumeIcon.classList.toggle("fa-volume-xmark");
     volumeIcon.classList.toggle("fa-volume-hight");
@@ -714,23 +750,56 @@ wrapList.addEventListener("wheel", function (e) {
 });
 wrapList.addEventListener("click", async function (e) {
     if (e.target.closest(".playList-wrapper-item-img")) {
-        const id = e.target.closest(".playList-wrapper-item-img").dataset.id;
+        const item = e.target.closest(".playList-wrapper-item");
 
-        wrapListSongPlaying.classList.remove("selected");
-        wrapListSongPlaying = e.target.closest(".playList-wrapper-item");
+        wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
+        wrapListSongPlaying = item;
         wrapListSongPlaying.classList.add("selected");
 
-        songPlaying &&
-            songPlaying.parentNode.parentNode.classList.remove("selected");
-        songPlaying = listSong_content.querySelector(`div[data-id="${id}"]`);
-        songPlaying.parentNode.parentNode.classList.add("selected");
+        songPlaying && songPlaying.classList.remove("selected");
+        songPlaying = listSong_content.querySelector(
+            `div[data-id="${item.dataset.id}"]`
+        );
+        songPlaying.classList.add("selected");
 
         await handlePlayMusic(e.target.closest(".playList-wrapper-item-img"));
 
-        songPlaying = listSong_content.querySelector(
-            `div[data-id="${
-                e.target.closest(".playList-wrapper-item-img").dataset.id
-            }"`
+        // songPlaying = listSong_content.querySelector(
+        //     `div[data-id="${
+        //         e.target.closest(".playList-wrapper-item-img").dataset.id
+        //     }"`
+        // );
+    }
+});
+
+listSong_content.addEventListener("click", async function (e) {
+    if (e.target.closest(".listSong-content-list-item-infor-img")) {
+        // const item = e.target.closest(".listSong-content-list-item-infor-img");
+        const item = e.target.closest(".listSong-content-list-item");
+
+        songPlaying && songPlaying.classList.remove("selected");
+        songPlaying = item;
+        songPlaying.classList.add("selected");
+
+        wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
+        wrapListSongPlaying = wrapList.querySelector(
+            `div[data-id="${songPlaying.dataset.id}"]`
+        );
+        wrapListSongPlaying.classList.add("selected");
+
+        time.value = 0;
+        mp3.currentTime = 0;
+        mp3.pause();
+        if (!btns[2].classList.contains("fa-circle-pause")) {
+            btns[2].classList.add("fa-circle-pause");
+            btns[2].classList.remove("fa-circle-play");
+        }
+        play.querySelector(".play-main-time__total").textContent =
+            item.querySelector(".listSong-content-list-item__time").textContent;
+        play.classList.add("show");
+
+        await handlePlayMusic(
+            e.target.closest(".listSong-content-list-item-infor-img")
         );
     }
 });

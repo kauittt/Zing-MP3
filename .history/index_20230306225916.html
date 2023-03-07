@@ -20,43 +20,44 @@
         <link rel="stylesheet" href="./assets/css/reset.css" />
         <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
         <link rel="stylesheet" href="./assets/css/styles.css" />
-        <link rel="stylesheet" href="./assets/css/top100.css" />
         <link rel="stylesheet" href="./assets/css/responsive.css" />
     </head>
     <body>
         <div class="main">
             <nav class="nav">
-                <a href="./index.html">
-                    <div class="nav-logo">
-                        <img
-                            src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-light.svg"
-                            alt="Zing Mp3"
-                        />
-                    </div>
-                </a>
+                <div class="nav-logo">
+                    <img
+                        src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-light.svg"
+                        alt="Zing Mp3"
+                    />
+                </div>
+
                 <div class="nav-category">
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="0" class="nav-category__item">
                         <i
                             class="fa-solid fa-headphones nav-category__item__icon"
                         ></i
                         >Cá Nhân
-                    </a>
-                    <a
-                        href="./index.html"
+                    </h2>
+
+                    <h2
+                        data-nav="1"
                         class="nav-category__item nav-category__item--selected"
                     >
                         <i
                             class="fa-solid fa-compact-disc nav-category__item__icon"
                         ></i
                         >Khám Phá
-                    </a>
-                    <a href="#!" class="nav-category__item">
+                    </h2>
+
+                    <h2 data-nav="2" class="nav-category__item">
                         <i
                             class="fa-solid fa-chart-simple nav-category__item__icon"
                         ></i
                         >#zingchart
-                    </a>
-                    <a href="#!" class="nav-category__item">
+                    </h2>
+
+                    <h2 data-nav="3" class="nav-category__item">
                         <i
                             class="fa-solid fa-radio nav-category__item__icon"
                         ></i
@@ -65,42 +66,42 @@
                             src="https://zjs.zmdcdn.me/zmp3-desktop/dev/147506/static/media/live-tag.e25dd240.svg"
                             alt="Live"
                         />
-                    </a>
+                    </h2>
 
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="4" class="nav-category__item">
                         <i
                             class="fa-regular fa-calendar-days nav-category__item__icon"
                         ></i
                         >Theo Dõi
-                    </a>
+                    </h2>
                 </div>
 
                 <div class="nav-music">
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="5" class="nav-category__item">
                         <i
                             class="fa-solid fa-music nav-category__item__icon"
                         ></i
                         >Nhạc Mới
-                    </a>
+                    </h2>
 
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="6" class="nav-category__item">
                         <i
                             class="fa-solid fa-icons nav-category__item__icon"
                         ></i
                         >Thể Loại
-                    </a>
+                    </h2>
 
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="7" class="nav-category__item">
                         <i class="fa-solid fa-star nav-category__item__icon"></i
                         >Top 100
-                    </a>
+                    </h2>
 
-                    <a href="#!" class="nav-category__item">
+                    <h2 data-nav="8" class="nav-category__item">
                         <i
                             class="fa-solid fa-film nav-category__item__icon"
                         ></i>
                         MV
-                    </a>
+                    </h2>
                 </div>
 
                 <div class="nav-vip">
@@ -163,7 +164,35 @@
                     </div>
                 </div>
             </div>
-            <div class="content">
+            <div data-page="0" class="content">
+                <!--! Slider  -->
+                <div class="slider">
+                    <i
+                        class="fa-solid fa-circle-chevron-left slider__icon slider__prev hide"
+                    ></i>
+                    <div class="slider-list"></div>
+                    <i
+                        class="fa-solid fa-circle-chevron-right slider__icon slider__next"
+                    ></i>
+                </div>
+
+                <div class="section past"></div>
+                <div class="section new"></div>
+
+                <div class="section topic"></div>
+                <div class="section singers"></div>
+                <div class="section event"></div>
+                <div class="section everyday"></div>
+                <div class="section top100"></div>
+                <div class="section album"></div>
+            </div>
+
+            <div data-page="1" class="listSong">
+                <div class="listSong-infor"></div>
+                <div class="listSong-content"></div>
+            </div>
+
+            <div data-page="2" class="pageTop">
                 <!--! Banner  -->
                 <div class="banner">
                     <div class="banner-img"></div>
@@ -226,19 +255,25 @@
                     </svg>
                 </div>
                 <!--! Top100  -->
-                <div class="section top100"></div>
+                <div class="pageTop-content">
+                    <div class="section"></div>
+                    <div class="section"></div>
+                    <div class="section"></div>
+                    <div class="section"></div>
+                    <div class="section"></div>
+                </div>
             </div>
 
             <div class="play">
                 <div class="play-infor">
-                    <div class="play-infor-img">
+                    <div class="play-infor-img" data-id="">
                         <img
                             src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
                             alt=""
                         />
                     </div>
                     <div class="play-infor-song">
-                        <h3 class="play-infor-song__name">
+                        <h3 class="play-infor-song__name" data-id="">
                             Lorem, ipsum dolor.
                         </h3>
                         <p class="play-infor-song__singer">
@@ -249,12 +284,11 @@
 
                 <div class="play-main">
                     <div class="play-main-list">
-                        <i class="fa-solid fa-shuffle randome"></i>
+                        <i class="fa-solid fa-shuffle random"></i>
                         <i class="fa-solid fa-backward-step prev"></i>
                         <i
-                            class="fa-regular fa-circle-play play-main-list--main"
+                            class="fa-regular fa-circle-pause play-main-list--main"
                         ></i>
-                        <!-- <i class="fa-regular fa-circle-pause "></i> -->
                         <i class="fa-solid fa-forward-step next"></i>
                         <i class="fa-solid fa-repeat"></i>
                     </div>
@@ -265,6 +299,7 @@
                             class="play-main-time__drag"
                             min="0"
                             max="100"
+                            value="0"
                         />
                         <div class="play-main-time__total">3:21</div>
                     </div>
@@ -278,6 +313,9 @@
                             name=""
                             id=""
                             class="play-menu-volume__input"
+                            min="0"
+                            max="100"
+                            value="100"
                         />
                     </div>
 
@@ -285,78 +323,30 @@
                 </div>
                 <div class="playList">
                     <h2 class="playList__heading">Danh sách phát</h2>
-                    <div class="playList-wrapper">
-                        <div class="playList-wrapper-item selected">
-                            <div class="playList-wrapper-item-img">
-                                <img
-                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="playList-wrapper-item-song">
-                                <p class="playList-wrapper-item-song__name">
-                                    Lorem, ipsum dolor.
-                                </p>
-                                <p class="playList-wrapper-item-song__singer">
-                                    Lorem, ipsum dolor.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="playList-wrapper-item">
-                            <div class="playList-wrapper-item-img">
-                                <img
-                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="playList-wrapper-item-song">
-                                <p class="playList-wrapper-item-song__name">
-                                    Lorem, ipsum dolor.
-                                </p>
-                                <p class="playList-wrapper-item-song__singer">
-                                    Lorem, ipsum dolor.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="playList-wrapper-item">
-                            <div class="playList-wrapper-item-img">
-                                <img
-                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="playList-wrapper-item-song">
-                                <p class="playList-wrapper-item-song__name">
-                                    Lorem, ipsum dolor.
-                                </p>
-                                <p class="playList-wrapper-item-song__singer">
-                                    Lorem, ipsum dolor.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="playList-wrapper-item">
-                            <div class="playList-wrapper-item-img">
-                                <img
-                                    src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/c/9/40c979fecdbde04e31d072292f2ca5b2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="playList-wrapper-item-song">
-                                <p class="playList-wrapper-item-song__name">
-                                    Lorem, ipsum dolor.
-                                </p>
-                                <p class="playList-wrapper-item-song__singer">
-                                    Lorem, ipsum dolor.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="playList-wrapper"></div>
                 </div>
             </div>
+
+            <div data-page="999" class="loading">
+                <h2 class="loading__desc">Loading</h2>
+                <div class="circle-loading"></div>
+            </div>
         </div>
+        <div class="error">
+            <div class="error-content">
+                <i class="fa-solid fa-xmark"></i>
+                <h2 class="error-content__heading">Dành Cho Tài Khoản VIP</h2>
+                <p class="error-content__desc">
+                    Theo yêu cầu của đơn vị sở hữu bản quyền, bạn cần tài khoản
+                    VIP để nghe bài hát này.
+                </p>
+            </div>
+        </div>
+
+        <script src="./assets/js/page.js"></script>
+        <script src="./assets/js/nav.js"></script>
+        <script src="./assets/js/playMusic.js"></script>
         <script src="./assets/js/top100.js"></script>
+        <script src="./assets/js/main.js"></script>
     </body>
 </html>

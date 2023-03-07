@@ -30,12 +30,12 @@ function getListSong(item, section) {
     topContent.append(section);
 }
 
-function loadSectionListItem(item, artists) {
+function loadSectionListItem(item) {
     const div = document.createElement("div");
 
     const template = `
             <div class="section-list-item" data-id="${item.encodeId}">
-                <div class="section-list-item-img" data-id="${item.encodeId}">
+                <div class="section-list-item-img" ">
                     <img
                         src="${item.thumbnailM}"
                         alt=""
@@ -60,7 +60,7 @@ function loadSectionListItem(item, artists) {
 `;
     div.insertAdjacentHTML("beforeend", template);
 
-    loadSingers(artists, div.querySelector(".section-list-item__desc"));
+    loadSingers(item.artists, div.querySelector(".section-list-item__desc"));
 
     return div.innerHTML;
 }

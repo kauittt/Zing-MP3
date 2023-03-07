@@ -35,7 +35,7 @@ function loadSectionListItem(item, artists) {
 
     const template = `
             <div class="section-list-item" data-id="${item.encodeId}">
-                <div class="section-list-item-img" data-id="${item.encodeId}">
+                <div class="section-list-item-img" ">
                     <img
                         src="${item.thumbnailM}"
                         alt=""

@@ -6,7 +6,6 @@ async function loadTop(param) {
     const response = await fetch(`${endpoint}${param}`);
     const { data } = await response.json();
 
-    console.log(data);
     for (let i = 0; i < [...sections].length; i++) {
         getListSong(data[i], sections[i]);
     }
@@ -30,12 +29,12 @@ function getListSong(item, section) {
     topContent.append(section);
 }
 
-function loadSectionListItem(item, artists) {
+function loadSectionListItem(item) {
     const div = document.createElement("div");
 
     const template = `
             <div class="section-list-item" data-id="${item.encodeId}">
-                <div class="section-list-item-img" data-id="${item.encodeId}">
+                <div class="section-list-item-img" ">
                     <img
                         src="${item.thumbnailM}"
                         alt=""
@@ -49,7 +48,7 @@ function loadSectionListItem(item, artists) {
                     </div>
                 </div>
 
-                <div class="section-list-item-infor">
+                <div>
                     <h3 class="section-list-item__heading ">
                         ${item.title}
                     </h3>
@@ -60,7 +59,7 @@ function loadSectionListItem(item, artists) {
 `;
     div.insertAdjacentHTML("beforeend", template);
 
-    loadSingers(artists, div.querySelector(".section-list-item__desc"));
+    loadSingers(item.artists, div.querySelector(".section-list-item__desc"));
 
     return div.innerHTML;
 }

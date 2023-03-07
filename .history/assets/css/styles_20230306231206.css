@@ -579,6 +579,7 @@ a {
 }
 
 .section-list-item p span:hover {
+    color: red !important;
 }
 
 .listSong-content-list-item-infor-song__singer span:hover,
@@ -833,6 +834,7 @@ span:hover {
     font-weight: 400;
     line-height: 1.33;
     color: var(--secondary-text);
+    pointer-events: none;
 }
 
 /*! Play List */
