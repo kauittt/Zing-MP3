@@ -62,9 +62,7 @@ async function handleItemClick(e, id = null) {
 
     wrapList.innerHTML = "";
     data.song.items.forEach((item) => {
-        wrapList.appendChild(
-            loadListContent(item, false, false, "playList", "playList-wrapper")
-        );
+        wrapList.insertAdjacentHTML("beforeend", loadListContent(item, false));
     });
 
     hideLoading();
@@ -101,25 +99,23 @@ ${data.title}
     return template;
 }
 
-function loadListContent(
-    data,
-    album = true,
-    time = true,
-    type = "listSong",
-    query = "listSong-content-list"
-) {
-    //listSong, playList, zingChart,....
+function loadListContent(data, flag = true) {
     console.log(data);
+    let minute = Math.floor(data.duration / 60);
+    let second = "0" + (data.duration % 60);
+    second = second.slice(-2);
 
     let item = document.createElement("div");
-    item.className = `${query}-item general-item`;
+    item.className = "listSong-content-list-item";
     item.setAttribute("data-id", data.encodeId);
 
-    const infor = `
-    <div class="${query}-item-infor general-item-infor">
+    const template = `
+    <div class="listSong-content-list-item-infor">
         <i class="fa-solid fa-music"></i>
         <div
-            class="${query}-item-infor-img general-item-infor-img" data-id="${data.encodeId}"
+            class="listSong-content-list-item-infor-img" data-id="${
+                data.encodeId
+            }"
         >
             <img
                 src="${data.thumbnailM}"
@@ -131,61 +127,80 @@ function loadListContent(
         </div>
 
         <div
-            class="${query}-item-infor-song general-item-infor-song"
+            class="listSong-content-list-item-infor-song"
         >
             <h3
-                class="${query}-item-infor-song__name general-item-infor-song__name"
+                class="listSong-content-list-item-infor-song__name"
             >
                 ${data.title}
             </h3>
             <p
-                class="${query}-item-infor-song__singer general-item-infor-song__singer"
+                class="listSong-content-list-item-infor-song__singer"
             >
             </p>
         </div>
+        
+        ${
+            data.streamPrivileges
+                ? `<img src="https://zing-mp3-clone-three.vercel.app/static/media/vip-label.ddbac03b04ea429116ca6f7aad90416b.svg" alt="" class="vipSong">`
+                : ""
+        }
+
+    
     </div>
+
+    <p class="listSong-content-list-item__album" data-id="${
+        data.album && data.album.encodeId
+    }">
+        ${data.title}
+    </p>
+    <p class="listSong-content-list-item__time">
+        ${minute}:${second}
+    </p>
 `;
-    item.insertAdjacentHTML("beforeend", infor);
+
+    const template2 = `<div class="playList-wrapper-item" data-id="${data.encodeId}">
+    <div class="playList-wrapper-item-img" data-id="${data.encodeId}">
+        <img
+            src="${data.thumbnailM}"
+            alt=""
+        />
+        <div class="layer">
+                                    <i class="fa-regular fa-circle-play"></i>
+                                </div>
+    </div>
+    <div class="playList-wrapper-item-song">
+        <h3 class="playList-wrapper-item-song__name">
+        ${data.title}
+        </h3>
+        <p class="playList-wrapper-item-song__singer">
+        </p>
+    </div>
+</div>`;
+    item.insertAdjacentHTML("beforeend", flag ? template : template2);
 
     data.album &&
         loadSingers(
             data.album.artists,
-            item.querySelector(`.${query}-item-infor-song__singer`)
+            flag
+                ? item.querySelector(
+                      ".listSong-content-list-item-infor-song__singer"
+                  )
+                : item.querySelector(".playList-wrapper-item-song__singer")
         );
-
-    if (album) {
-        item.insertAdjacentHTML(
-            "beforeend",
-            `
-            <p class="${query}-item__album general-item__album" data-id="${
-                data.album && data.album.encodeId
-            }">
-                ${data.title}
-            </p>
-        `
-        );
-    }
-
-    if (time) {
-        let minute = Math.floor(data.duration / 60);
-        let second = "0" + (data.duration % 60);
-        second = second.slice(-2);
-
-        item.insertAdjacentHTML(
-            "beforeend",
-            `
-            <p class="${query}-item__time general-item__time">
-            ${minute}:${second}
-        </p>
-        `
-        );
-    }
-
-    return item;
+    return flag ? item : item.innerHTML;
 }
 
 listSong_content.addEventListener("click", async function (e) {
     if (e.target.closest(".listSong-content-list-item-infor-img")) {
+        if (
+            e.target
+                .closest(".listSong-content-list-item-infor")
+                .querySelector("img")
+        ) {
+            showVip();
+            return;
+        }
         // const item = e.target.closest(".listSong-content-list-item-infor-img");
         const item = e.target.closest(".listSong-content-list-item");
 
@@ -228,9 +243,7 @@ wrapList.addEventListener("wheel", function (e) {
     wrapList.scrollTop += delta;
 });
 wrapList.addEventListener("click", async function (e) {
-    console.log(e.target);
-    if (e.target.closest(".playList-wrapper-item-infor-img")) {
-        console.log("work");
+    if (e.target.closest(".playList-wrapper-item-img")) {
         const item = e.target.closest(".playList-wrapper-item");
 
         wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
@@ -243,9 +256,7 @@ wrapList.addEventListener("click", async function (e) {
         );
         songPlaying.classList.add("selected");
 
-        songPlaying
-            .querySelector(".listSong-content-list-item-infor-img")
-            .click();
+        await handlePlayMusic(e.target.closest(".playList-wrapper-item-img"));
     }
 });
 

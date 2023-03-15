@@ -224,7 +224,7 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    display: none;
 }
 /*! Header  */
 .header {
@@ -1070,17 +1070,54 @@ span:hover {
     overflow: hidden;
 }
 
-.playList-wrapper-item .fa-music {
-    display: none;
-}
-
-.playList-wrapper-item-infor {
-    width: 100%;
+.playList-wrapper .listSong-content-list-item {
+    padding: 0;
 }
 
 .playList-wrapper-item.selected {
     background-color: var(--purple-primary);
     color: white;
+}
+
+/* .playList-wrapper-item,
+.playList-wrapper-item-infor {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+}
+.playList-wrapper-item-infor i {
+    display: none;
+}
+
+.playList-wrapper-item-infor-img {
+    position: relative;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.playList-wrapper-item-infor-img img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.playList-wrapper-item-infor-song {
+}
+
+.playList-wrapper-item-infor-song__name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--primary-text);
+    line-height: 18px;
+}
+
+.playList-wrapper-item-infor-song__singer {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--secondary-text);
 }
 
 .playList-wrapper-item.selected {
@@ -1093,7 +1130,7 @@ span:hover {
 
 .playList-wrapper-item.selected .playList-wrapper-item-infor-song__singer {
     color: hsla(0, 0%, 100%, 0.6);
-}
+} */
 
 /*! Error */
 .error {

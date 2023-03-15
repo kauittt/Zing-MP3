@@ -112,14 +112,14 @@ function loadListContent(
     console.log(data);
 
     let item = document.createElement("div");
-    item.className = `${query}-item general-item`;
+    item.className = `${query}-item genera-item`;
     item.setAttribute("data-id", data.encodeId);
 
     const infor = `
-    <div class="${query}-item-infor general-item-infor">
+    <div class="${query}-item-infor genera-item-infor">
         <i class="fa-solid fa-music"></i>
         <div
-            class="${query}-item-infor-img general-item-infor-img" data-id="${data.encodeId}"
+            class="${query}-item-infor-img genera-item-infor-img" data-id="${data.encodeId}"
         >
             <img
                 src="${data.thumbnailM}"
@@ -131,15 +131,15 @@ function loadListContent(
         </div>
 
         <div
-            class="${query}-item-infor-song general-item-infor-song"
+            class="${query}-item-infor-song genera-item-infor-song"
         >
             <h3
-                class="${query}-item-infor-song__name general-item-infor-song__name"
+                class="${query}-item-infor-song__name genera-item-infor-song__name"
             >
                 ${data.title}
             </h3>
             <p
-                class="${query}-item-infor-song__singer general-item-infor-song__singer"
+                class="${query}-item-infor-song__singer genera-item-infor-song__singer"
             >
             </p>
         </div>
@@ -157,7 +157,7 @@ function loadListContent(
         item.insertAdjacentHTML(
             "beforeend",
             `
-            <p class="${query}-item__album general-item__album" data-id="${
+            <p class="${query}-item__album genera-item__album" data-id="${
                 data.album && data.album.encodeId
             }">
                 ${data.title}
@@ -174,7 +174,7 @@ function loadListContent(
         item.insertAdjacentHTML(
             "beforeend",
             `
-            <p class="${query}-item__time general-item__time">
+            <p class="${query}-item__time genera-item__time">
             ${minute}:${second}
         </p>
         `
@@ -228,9 +228,7 @@ wrapList.addEventListener("wheel", function (e) {
     wrapList.scrollTop += delta;
 });
 wrapList.addEventListener("click", async function (e) {
-    console.log(e.target);
-    if (e.target.closest(".playList-wrapper-item-infor-img")) {
-        console.log("work");
+    if (e.target.closest(".playList-wrapper-item-img")) {
         const item = e.target.closest(".playList-wrapper-item");
 
         wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
@@ -243,9 +241,7 @@ wrapList.addEventListener("click", async function (e) {
         );
         songPlaying.classList.add("selected");
 
-        songPlaying
-            .querySelector(".listSong-content-list-item-infor-img")
-            .click();
+        await handlePlayMusic(e.target.closest(".playList-wrapper-item-img"));
     }
 });
 

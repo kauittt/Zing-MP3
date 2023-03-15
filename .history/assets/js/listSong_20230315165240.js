@@ -228,9 +228,7 @@ wrapList.addEventListener("wheel", function (e) {
     wrapList.scrollTop += delta;
 });
 wrapList.addEventListener("click", async function (e) {
-    console.log(e.target);
-    if (e.target.closest(".playList-wrapper-item-infor-img")) {
-        console.log("work");
+    if (e.target.closest(".playList-wrapper-item-img")) {
         const item = e.target.closest(".playList-wrapper-item");
 
         wrapListSongPlaying && wrapListSongPlaying.classList.remove("selected");
@@ -243,9 +241,7 @@ wrapList.addEventListener("click", async function (e) {
         );
         songPlaying.classList.add("selected");
 
-        songPlaying
-            .querySelector(".listSong-content-list-item-infor-img")
-            .click();
+        await handlePlayMusic(e.target.closest(".playList-wrapper-item-img"));
     }
 });
 

@@ -140,7 +140,9 @@ sliderList.addEventListener("click", handleSliderClick);
 //? ===Slider===
 
 async function test() {
-    const res = await fetch("https://apizingmp3.vercel.app/api/charthome");
+    const res = await fetch(
+        "https://apizingmp3.vercel.app/api/newreleasechart"
+    );
     const { data } = await res.json();
     console.log(data);
 }

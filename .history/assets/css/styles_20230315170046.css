@@ -224,7 +224,7 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    display: none;
 }
 /*! Header  */
 .header {

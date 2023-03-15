@@ -243,9 +243,10 @@ wrapList.addEventListener("click", async function (e) {
         );
         songPlaying.classList.add("selected");
 
-        songPlaying
-            .querySelector(".listSong-content-list-item-infor-img")
-            .click();
+        songPlaying.click();
+        // await handlePlayMusic(
+        //     e.target.closest(".playList-wrapper-item-infor-img")
+        // );
     }
 });
 

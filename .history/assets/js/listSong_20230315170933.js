@@ -246,6 +246,9 @@ wrapList.addEventListener("click", async function (e) {
         songPlaying
             .querySelector(".listSong-content-list-item-infor-img")
             .click();
+        // await handlePlayMusic(
+        //     e.target.closest(".playList-wrapper-item-infor-img")
+        // );
     }
 });
 

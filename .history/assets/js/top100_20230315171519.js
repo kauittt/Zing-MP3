@@ -24,10 +24,7 @@ function getListSong(item, section) {
     item.items.forEach((item) => {
         //! listItem
         console.log(item);
-        list.insertAdjacentHTML(
-            "beforeend",
-            loadSectionListItem(item, item.artists)
-        );
+        list.insertAdjacentHTML("beforeend", loadSectionListItem(item));
     });
 
     section.appendChild(list);

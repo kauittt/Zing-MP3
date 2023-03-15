@@ -224,7 +224,7 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    display: none;
 }
 /*! Header  */
 .header {
@@ -463,7 +463,8 @@ a {
     overflow: hidden;
 }
 
-.listSong-content-list {
+.listSong-content-list,
+.ratingVN-list {
     display: flex;
     flex-direction: column;
     margin-top: 14px;
@@ -501,7 +502,8 @@ a {
     margin-right: 10px;
 }
 
-.general-item {
+.listSong-content-list-item,
+.ratingVN-list-item {
     position: relative;
     display: flex;
     align-items: center;
@@ -509,12 +511,13 @@ a {
     border-radius: 5px;
 }
 
-.general-item:hover,
-.general-item.selected {
+.listSong-content-list-item:hover,
+.listSong-content-list-item.selected,
+.playList-wrapper-item:hover {
     background: var(--alpha-bg);
 }
 
-.general-item::after {
+.listSong-content-list-item::after {
     display: block;
     content: "";
     position: absolute;
@@ -525,40 +528,42 @@ a {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.general-item-infor {
+.listSong-content-list-item-infor,
+.ratingVN-list-item-infor {
     display: flex;
     align-items: center;
     column-gap: 10px;
     width: 50%;
 }
 
-.general-item-infor i,
+.listSong-content-list-item-infor i,
 .listSong-content-list-heading__title i {
     font-size: 1.4rem;
     color: var(--secondary-text);
 }
 
-.general-item-infor-img {
+.listSong-content-list-item-infor-img,
+.zingChart-item-infor-img {
     position: relative;
     border-radius: 5px;
 }
 
-.general-item-infor-img:hover .layer i {
+.listSong-content-list-item-infor-img:hover .layer i {
     color: white;
 }
 
-.general-item-infor-img img {
+.listSong-content-list-item-infor-img img {
     display: block;
     width: 40px;
     border-radius: 5px;
 }
 
-.general-item-infor-song {
+.listSong-content-list-item-infor-song {
     display: flex;
     flex-direction: column;
 }
 
-.general-item-infor-song__name {
+.listSong-content-list-item-infor-song__name {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 18px;
@@ -569,7 +574,7 @@ a {
     overflow: hidden;
 }
 
-.general-item-infor-song__singer {
+.listSong-content-list-item-infor-song__singer {
     line-height: 18px;
 
     display: -webkit-box;
@@ -581,8 +586,8 @@ a {
 .section-list-item p span:hover {
 }
 
-.general-item-infor-song__singer span:hover,
-.general-item__album:hover,
+.listSong-content-list-item-infor-song__singer span:hover,
+.listSong-content-list-item__album:hover,
 .listSong-infor__singers span:hover,
 .section-list-item span:hover,
 .play-infor-song__singer span:hover,
@@ -595,21 +600,21 @@ span:hover {
     transition: all 0.15s ease;
 }
 
-.general-item-infor-song__singer,
-.general-item__album,
-.general-item__time {
+.listSong-content-list-item-infor-song__singer,
+.listSong-content-list-item__album,
+.listSong-content-list-item__time {
     font-size: 1.2rem;
     font-weight: 400;
     color: var(--secondary-text);
 }
 
-.general-item__album {
+.listSong-content-list-item__album {
     width: 40%;
     padding: 10px;
     line-height: 18px;
 }
 
-.general-item__time {
+.listSong-content-list-item__time {
     flex-grow: 1;
     text-align: center;
 }
@@ -1070,17 +1075,55 @@ span:hover {
     overflow: hidden;
 }
 
-.playList-wrapper-item .fa-music {
-    display: none;
+.playList-wrapper .listSong-content-list-item {
+    padding: 0;
 }
 
+.playList-wrapper-item,
 .playList-wrapper-item-infor {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    height: 56px;
     width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+}
+.playList-wrapper-item-infor i {
+    display: none;
 }
 
 .playList-wrapper-item.selected {
     background-color: var(--purple-primary);
     color: white;
+}
+
+.playList-wrapper-item-infor-img {
+    position: relative;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.playList-wrapper-item-infor-img img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.playList-wrapper-item-infor-song {
+}
+
+.playList-wrapper-item-infor-song__name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--primary-text);
+    line-height: 18px;
+}
+
+.playList-wrapper-item-infor-song__singer {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--secondary-text);
 }
 
 .playList-wrapper-item.selected {
@@ -1089,6 +1132,7 @@ span:hover {
 
 .playList-wrapper-item.selected .playList-wrapper-item-infor-song__name {
     color: white;
+    /* color: hsla(0, 0%, 100%, 0.6); */
 }
 
 .playList-wrapper-item.selected .playList-wrapper-item-infor-song__singer {
@@ -1220,5 +1264,5 @@ span:hover {
 }
 
 .zingChart {
-    display: none;
+    /* display: none; */
 }

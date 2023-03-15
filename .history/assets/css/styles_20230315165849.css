@@ -224,7 +224,7 @@ a {
 
 /*! Content */
 .content {
-    /* display: none; */
+    display: none;
 }
 /*! Header  */
 .header {
@@ -1072,10 +1072,6 @@ span:hover {
 
 .playList-wrapper-item .fa-music {
     display: none;
-}
-
-.playList-wrapper-item-infor {
-    width: 100%;
 }
 
 .playList-wrapper-item.selected {

@@ -18,8 +18,7 @@ async function handlePlayMusic(imgItem) {
     singers.innerHTML = desc.innerHTML;
 
     const response = await fetch(
-        // `https://zing-mp3-api.vercel.app/api/song/${id}`
-        `https://apizingmp3.vercel.app/api/song?id=${id}`
+        `https://zing-mp3-api.vercel.app/api/song/${id}`
     );
     const { data } = await response.json();
     console.log(data);
