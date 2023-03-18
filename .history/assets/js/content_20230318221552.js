@@ -1,11 +1,5 @@
 const endpoint = `https://apizingmp3.vercel.app/api/`;
-const content = document.querySelector(".content");
-content.addEventListener("click", async function (e) {
-    if (e.target.matches(".section__more.top100")) {
-        console.log("work");
-        navLinks[7].click();
-    }
-});
+
 loadAll();
 
 async function loadAll() {

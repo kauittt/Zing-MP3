@@ -46,8 +46,7 @@ a {
 .pageTop,
 .zingChart,
 .newRelease,
-.category,
-.category-2 {
+.category {
     width: 100%;
     min-height: 100vh;
     margin-left: 240px;
@@ -1424,4 +1423,8 @@ span:hover,
 .category-2-banner img {
     width: 100%;
     object-position: center;
+}
+
+.category-2 {
+    display: flex;
 }

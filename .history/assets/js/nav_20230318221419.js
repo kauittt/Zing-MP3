@@ -39,9 +39,9 @@ for (let i = 0; i < [...navLinks].length; i++) {
                 displayPage(5);
                 pageShowing = pages[findIdPage(5)];
 
-                if (!categoryContent.querySelector(".section-list-item")) {
+                if (!newRelease.querySelector(".newRelease-list-item")) {
                     showLoading();
-                    await loadCategory();
+                    await loadNewRelease();
                     hideLoading();
                 }
                 break;

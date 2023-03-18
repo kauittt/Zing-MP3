@@ -46,8 +46,7 @@ a {
 .pageTop,
 .zingChart,
 .newRelease,
-.category,
-.category-2 {
+.category {
     width: 100%;
     min-height: 100vh;
     margin-left: 240px;
@@ -1407,21 +1406,18 @@ span:hover,
 }
 
 /*! Category */
-.category,
-.category-2 {
+.category {
     display: flex;
     flex-direction: column;
     margin-top: 70px;
     display: none;
 }
 
-.category-banner,
-.category-2-banner {
+.category-banner {
     width: 100%;
 }
 
-.category-banner img,
-.category-2-banner img {
+.category-banner img {
     width: 100%;
     object-position: center;
 }

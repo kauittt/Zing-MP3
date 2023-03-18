@@ -25,25 +25,6 @@ for (let i = 0; i < [...navLinks].length; i++) {
                 break;
 
             case "5":
-                displayPage(4);
-                pageShowing = pages[findIdPage(4)];
-
-                if (!newRelease.querySelector(".newRelease-list-item")) {
-                    showLoading();
-                    await loadNewRelease();
-                    hideLoading();
-                }
-                break;
-
-            case "6":
-                displayPage(5);
-                pageShowing = pages[findIdPage(5)];
-
-                if (!categoryContent.querySelector(".section-list-item")) {
-                    showLoading();
-                    await loadCategory();
-                    hideLoading();
-                }
                 break;
             case "7":
                 displayPage(2);

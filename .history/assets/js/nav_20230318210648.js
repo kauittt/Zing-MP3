@@ -34,17 +34,6 @@ for (let i = 0; i < [...navLinks].length; i++) {
                     hideLoading();
                 }
                 break;
-
-            case "6":
-                displayPage(5);
-                pageShowing = pages[findIdPage(5)];
-
-                if (!categoryContent.querySelector(".section-list-item")) {
-                    showLoading();
-                    await loadCategory();
-                    hideLoading();
-                }
-                break;
             case "7":
                 displayPage(2);
                 pageShowing = pages[findIdPage(2)];

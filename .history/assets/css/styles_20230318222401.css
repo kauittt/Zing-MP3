@@ -46,8 +46,7 @@ a {
 .pageTop,
 .zingChart,
 .newRelease,
-.category,
-.category-2 {
+.category {
     width: 100%;
     min-height: 100vh;
     margin-left: 240px;
