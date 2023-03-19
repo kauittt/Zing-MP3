@@ -48,6 +48,7 @@ async function loadNewRelease() {
     }
 }
 
+// let selected = null;
 newRelease.addEventListener("click", async function (e) {
     if (e.target.closest(".general-item-infor-img")) {
         const item = e.target.closest(".general-item");

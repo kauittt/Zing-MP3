@@ -1400,6 +1400,8 @@ span:hover,
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-top: 70px;
+    /* padding-top: 40px; */
     display: none;
 }
 
@@ -1416,6 +1418,7 @@ span:hover,
 .category-2 {
     display: flex;
     flex-direction: column;
+    margin-top: 70px;
     display: none;
 }
 

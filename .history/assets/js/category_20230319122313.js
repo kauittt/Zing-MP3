@@ -1,10 +1,13 @@
 const banner = document.querySelector(".category-banner img");
 const categoryContent = document.querySelector(".category-content");
+
 const banner2 = document.querySelector(".category-2-banner img");
 const categoryContent2 = document.querySelector(".category-2-content");
+
 async function loadCategory() {
     const res = await fetch("https://zing-mp3-api.vercel.app/api/category");
     const { data } = await res.json();
+    console.log(data);
 
     banner.setAttribute("src", data.banners[0].cover);
 
@@ -35,7 +38,7 @@ function getCategoryListSong(section, categoryContent, number) {
 
     const loops = section.playlists || section.items;
 
-    let len = number == 1 ? 5 : [...loops].length;
+    let len = categoryContent == 1 ? 5 : [...loops].length;
     for (let i = 0; i < len; i++) {
         const item = loops[i];
         list.insertAdjacentHTML(
@@ -47,6 +50,7 @@ function getCategoryListSong(section, categoryContent, number) {
     tmpSection.appendChild(list);
     categoryContent.appendChild(tmpSection);
 }
+
 function loadSectionListItem(item, artists) {
     const div = document.createElement("div");
 

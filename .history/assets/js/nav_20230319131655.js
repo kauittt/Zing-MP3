@@ -14,6 +14,7 @@ for (let i = 0; i < [...navLinks].length; i++) {
                 break;
 
             case "2":
+                console.log("work");
                 displayPage(3);
                 pageShowing = pages[findIdPage(3)];
                 if (!zingChart.querySelector(".ratingVN-list-item")) {

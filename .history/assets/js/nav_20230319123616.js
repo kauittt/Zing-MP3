@@ -1,6 +1,9 @@
 const navLinks = document.querySelectorAll(".nav h2[data-nav]");
 let navSelected = 1;
 
+const number = 100;
+export { number };
+
 for (let i = 0; i < [...navLinks].length; i++) {
     const item = navLinks[i];
     item.addEventListener("click", async function (e) {
@@ -14,6 +17,7 @@ for (let i = 0; i < [...navLinks].length; i++) {
                 break;
 
             case "2":
+                console.log("work");
                 displayPage(3);
                 pageShowing = pages[findIdPage(3)];
                 if (!zingChart.querySelector(".ratingVN-list-item")) {

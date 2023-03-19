@@ -22,6 +22,7 @@ async function handlePlayMusic(imgItem) {
         `https://apizingmp3.vercel.app/api/song?id=${id}`
     );
     const { data } = await response.json();
+    console.log(data);
     if (!data) {
         showVip();
         return;

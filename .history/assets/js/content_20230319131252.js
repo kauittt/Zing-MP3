@@ -2,10 +2,14 @@ const endpoint = `https://apizingmp3.vercel.app/api/`;
 const content = document.querySelector(".content");
 content.addEventListener("click", async function (e) {
     if (e.target.matches(".section__more.top100")) {
+        console.log("work");
         navLinks[7].click();
     }
 });
 loadAll();
+
+import { number } from "./nav.js";
+console.log(number);
 
 async function loadAll() {
     showLoading();
@@ -18,6 +22,7 @@ let sectionsId = 0;
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    console.log(data);
     for (let i = 0; i < data.items.length; i++) {
         const section = data.items[i];
 
@@ -143,11 +148,14 @@ prevBtn.addEventListener("click", function (e) {
 sliderList.addEventListener("click", handleSliderClick);
 //? ===Slider===
 
-async function test() {
-    const res = await fetch(
-        "https://zingmp3.vn/api/v2/video/get/list?id=IWZ9Z08I"
-    );
-    const { data } = await res.json();
+loadCategory();
+
+function A() {
+    //do something
 }
 
-// test();
+function B() {
+    //do something
+}
+
+export { A, B };

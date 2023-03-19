@@ -1,10 +1,9 @@
 const newRelease = document.querySelector(".newRelease");
 const newReleaseList = document.querySelector(".newRelease-list");
+const newReleaseBanner = document.querySelector(".newRelease-banner img");
 
 async function loadNewRelease() {
-    const banner = document.querySelector(".newRelease-banner img");
-
-    banner.setAttribute(
+    newReleaseBanner.setAttribute(
         "src",
         "https://png.pngtree.com/background/20210710/original/pngtree-music-headset-red-simple-banner-picture-image_1059930.jpg"
     );
@@ -48,6 +47,7 @@ async function loadNewRelease() {
     }
 }
 
+// let selected = null;
 newRelease.addEventListener("click", async function (e) {
     if (e.target.closest(".general-item-infor-img")) {
         const item = e.target.closest(".general-item");

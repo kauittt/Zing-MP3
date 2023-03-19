@@ -1,19 +1,22 @@
 const banner = document.querySelector(".category-banner img");
 const categoryContent = document.querySelector(".category-content");
+
 const banner2 = document.querySelector(".category-2-banner img");
 const categoryContent2 = document.querySelector(".category-2-content");
+
 async function loadCategory() {
     const res = await fetch("https://zing-mp3-api.vercel.app/api/category");
     const { data } = await res.json();
+    console.log(data);
 
     banner.setAttribute("src", data.banners[0].cover);
 
     [...data.genre].forEach((section) => {
-        getCategoryListSong(section, categoryContent, 1);
+        getCategoryListSong(section, 1);
     });
 }
 
-function getCategoryListSong(section, categoryContent, number) {
+function getCategoryListSong(section, categoryContent) {
     const tmpSection = document.createElement("div");
     tmpSection.className = "section";
     tmpSection.setAttribute("data-id", section.encodeId);
@@ -23,7 +26,7 @@ function getCategoryListSong(section, categoryContent, number) {
     heading.textContent = section.title;
     tmpSection.appendChild(heading);
 
-    if (number == 1) {
+    if (categoryContent == 1) {
         const more = document.createElement("p");
         more.className = "section__more";
         more.textContent = "Tất cả >";
@@ -35,7 +38,7 @@ function getCategoryListSong(section, categoryContent, number) {
 
     const loops = section.playlists || section.items;
 
-    let len = number == 1 ? 5 : [...loops].length;
+    let len = categoryContent == 1 ? 5 : [...loops].length;
     for (let i = 0; i < len; i++) {
         const item = loops[i];
         list.insertAdjacentHTML(
@@ -47,6 +50,7 @@ function getCategoryListSong(section, categoryContent, number) {
     tmpSection.appendChild(list);
     categoryContent.appendChild(tmpSection);
 }
+
 function loadSectionListItem(item, artists) {
     const div = document.createElement("div");
 
@@ -99,7 +103,7 @@ categoryContent.addEventListener("click", async function (e) {
         banner2.setAttribute("src", data.cover);
 
         [...data.sections].forEach((section) => {
-            getCategoryListSong(section, categoryContent2, 2);
+            getCategoryListSong(section, 2);
         });
 
         hideLoading();
