@@ -4,16 +4,16 @@ const listSong_content = document.querySelector(".listSong-content");
 const listSong_infor = document.querySelector(".listSong-infor");
 
 //! handle itemmmmmmmmmmmmmmmmmmmmm
-async function handleItemClick(target, id = null) {
+async function handleItemClick(e, id = null) {
     console.log("handleItemClick");
     const key = id;
     if (!id) {
-        const heading = target.closest(".section-list-item-img");
-        const img = target.closest(".section-list-item__heading");
+        const heading = e.target.closest(".section-list-item-img");
+        const img = e.target.closest(".section-list-item__heading");
         if (!heading && !img) {
             return;
         }
-        id = target.closest(".section-list-item").dataset.id;
+        id = e.target.closest(".section-list-item").dataset.id;
     }
     showLoading();
 
@@ -195,6 +195,7 @@ function loadListContent(
 
 listSong_content.addEventListener("click", async function (e) {
     if (e.target.closest(".listSong-content-list-item-infor-img")) {
+        // const item = e.target.closest(".listSong-content-list-item-infor-img");
         const item = e.target.closest(".listSong-content-list-item");
 
         songPlaying && songPlaying.classList.remove("selected");

@@ -18,12 +18,9 @@ let sectionsId = 0;
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    console.log(data);
     for (let i = 0; i < data.items.length; i++) {
         const section = data.items[i];
-        const sectionDiv = document.createElement("div");
-        const list = document.createElement("div");
-        let len = 0;
-        section.items ? (len = Math.min(section.items.length, 5)) : "";
 
         switch (section.sectionType) {
             case "banner":
@@ -44,32 +41,21 @@ async function loadSections() {
 
             case "recentPlaylist":
             case "new-release":
-                sectionDiv.className = `section ${section.sectionId}`;
-
-                sectionDiv.insertAdjacentHTML(
+                sections[sectionsId].insertAdjacentHTML(
                     "beforeend",
-                    `<h2 class="section__heading">${
-                        i == data.items.length - 1 ? "Album" : section.title
-                    }</h2>`
+                    `<h2 class="section__heading">${section.title}</h2>`
                 );
 
-                list.className = `section-list`;
+                const div = document.createElement("div");
+                div.className = `section-list`;
 
-                sectionDiv.appendChild(list);
-                content.appendChild(sectionDiv);
+                sections[sectionsId].appendChild(div);
+                sectionsId++;
                 break;
 
             case "playlist":
+                const sectionDiv = document.createElement("div");
                 sectionDiv.className = `section ${section.sectionId}`;
-                //more
-                if (section.sectionId == "h100") {
-                    sectionDiv.insertAdjacentHTML(
-                        "beforeend",
-                        `
-                            <p class="section__more top100">Tất cả></p>
-                        `
-                    );
-                }
 
                 sectionDiv.insertAdjacentHTML(
                     "beforeend",
@@ -78,8 +64,10 @@ async function loadSections() {
                     }</h2>`
                 );
 
+                const list = document.createElement("div");
                 list.className = `section-list`;
 
+                const len = section.items.length < 5 ? section.items.length : 5;
                 for (let a = 0; a < len; a++) {
                     list.insertAdjacentHTML(
                         "beforeend",
@@ -91,14 +79,14 @@ async function loadSections() {
                 }
 
                 sectionDiv.appendChild(list);
-                content.appendChild(sectionDiv);
                 break;
         }
     }
 }
 
-content.addEventListener("click", function (e) {
-    handleItemClick(e.target);
+const sections = document.querySelectorAll(".section");
+[...sections].forEach((item) => {
+    item.addEventListener("click", handleItemClick);
 });
 
 //! Slider

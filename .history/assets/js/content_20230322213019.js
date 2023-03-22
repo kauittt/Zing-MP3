@@ -18,12 +18,15 @@ let sectionsId = 0;
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    console.log(data);
     for (let i = 0; i < data.items.length; i++) {
         const section = data.items[i];
-        const sectionDiv = document.createElement("div");
+        const sectionDiv = document.createElement("div
+        ");
         const list = document.createElement("div");
         let len = 0;
-        section.items ? (len = Math.min(section.items.length, 5)) : "";
+        section.items && len = section.items.length < 5 ? section.items.length : 5;
+
 
         switch (section.sectionType) {
             case "banner":
@@ -55,21 +58,22 @@ async function loadSections() {
 
                 list.className = `section-list`;
 
+                for (let a = 0; a < len; a++) {
+                    list.insertAdjacentHTML(
+                        "beforeend",
+                        loadSectionListItem(
+                            section.items[a],
+                            section.items[a].artists
+                        )
+                    );
+                }
+
                 sectionDiv.appendChild(list);
                 content.appendChild(sectionDiv);
                 break;
 
             case "playlist":
                 sectionDiv.className = `section ${section.sectionId}`;
-                //more
-                if (section.sectionId == "h100") {
-                    sectionDiv.insertAdjacentHTML(
-                        "beforeend",
-                        `
-                            <p class="section__more top100">Tất cả></p>
-                        `
-                    );
-                }
 
                 sectionDiv.insertAdjacentHTML(
                     "beforeend",
@@ -80,6 +84,7 @@ async function loadSections() {
 
                 list.className = `section-list`;
 
+                len = section.items.length < 5 ? section.items.length : 5;
                 for (let a = 0; a < len; a++) {
                     list.insertAdjacentHTML(
                         "beforeend",
@@ -97,8 +102,9 @@ async function loadSections() {
     }
 }
 
-content.addEventListener("click", function (e) {
-    handleItemClick(e.target);
+const sections = document.querySelectorAll(".section");
+[...sections].forEach((item) => {
+    item.addEventListener("click", handleItemClick);
 });
 
 //! Slider

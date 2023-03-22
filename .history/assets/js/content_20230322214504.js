@@ -18,6 +18,7 @@ let sectionsId = 0;
 async function loadSections() {
     const response = await fetch(`https://zing-mp3-api.vercel.app/api/home`);
     const { data } = await response.json();
+    console.log(data);
     for (let i = 0; i < data.items.length; i++) {
         const section = data.items[i];
         const sectionDiv = document.createElement("div");
@@ -63,6 +64,7 @@ async function loadSections() {
                 sectionDiv.className = `section ${section.sectionId}`;
                 //more
                 if (section.sectionId == "h100") {
+                    console.log("work");
                     sectionDiv.insertAdjacentHTML(
                         "beforeend",
                         `
@@ -98,7 +100,7 @@ async function loadSections() {
 }
 
 content.addEventListener("click", function (e) {
-    handleItemClick(e.target);
+    item.addEventListener("click", handleItemClick);
 });
 
 //! Slider

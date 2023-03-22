@@ -13,7 +13,7 @@ async function handleItemClick(target, id = null) {
         if (!heading && !img) {
             return;
         }
-        id = target.closest(".section-list-item").dataset.id;
+        id = e.target.closest(".section-list-item").dataset.id;
     }
     showLoading();
 
