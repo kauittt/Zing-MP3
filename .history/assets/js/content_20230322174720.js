@@ -65,8 +65,15 @@ async function loadSections() {
                 const list = document.createElement("div");
                 list.className = `section-list`;
 
-                const len = section.items.length < 5 ? section.items.length : 5;
-                for (let a = 0; a < len; a++) {
+                console.log(section.items);
+                console.log(section.items[0].artists);
+                for (
+                    let a = 0;
+                    a < [...section.items].length < 5 ? items.length : 5;
+                    a++
+                ) {
+                    // console.log(section.items[a].artists);
+                    // console.log(sectionsId);
                     list.insertAdjacentHTML(
                         "beforeend",
                         loadSectionListItem(

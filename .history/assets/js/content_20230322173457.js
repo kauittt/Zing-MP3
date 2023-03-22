@@ -54,7 +54,6 @@ async function loadSections() {
                 break;
 
             case "playlist":
-                console.log(section.title);
                 sections[sectionsId].insertAdjacentHTML(
                     "beforeend",
                     `<h2 class="section__heading">${
@@ -65,8 +64,9 @@ async function loadSections() {
                 const list = document.createElement("div");
                 list.className = `section-list`;
 
-                const len = section.items.length < 5 ? section.items.length : 5;
-                for (let a = 0; a < len; a++) {
+                console.log(section.items);
+                for (let a = 0; a < 5; a++) {
+                    console.log(sectionsId);
                     list.insertAdjacentHTML(
                         "beforeend",
                         loadSectionListItem(
